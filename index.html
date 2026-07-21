@@ -9,188 +9,362 @@
 </head>
 <body>
 
+    <!-- MOBILE TOPBAR -->
+    <div class="mobile-topbar">
+        <!-- Sisi Kiri: Hamburger & Logo -->
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+            <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Buka Menu">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div class="logo-container" onclick="switchPage('beranda')" style="cursor: pointer; display: flex; align-items: center; gap: 0.6rem;">
+                <img src="logo.png" onerror="handleLogoError(this)" alt="Logo KKN" style="width: auto; height: 32px; object-fit: contain;">
+                <div class="logo-text-wrapper" style="line-height: 1.1;">
+                    <div class="logo-text" style="font-family: var(--font-title); font-weight: 800; font-size: 0.85rem; color: var(--text-dark);">KKN <span style="color: #0c77ad;">Sahabat Sekolah</span></div>
+                    <div class="logo-subtext" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.2px;">SMA MUHAMMADIYAH 9 BRONDONG LAMONGAN</div>
+                </div>
+            </div>
+        </div>
+        <!-- Sisi Kanan: Partner/Institution Logos (Masukkan berkas lokal Anda) -->
+        <div class="topbar-right-logos">
+            <img src="logo-sekolah.png" onerror="if(this.src.indexOf('.png') !== -1) { this.src='logo-sekolah.jpg'; } else if(this.src.indexOf('.jpg') !== -1) { this.src='logo-sekolah.jpeg'; } else { this.onerror=null; }" alt="Logo SMA M 9" class="topbar-logo-item" style="height: 38px; width: auto; object-fit: contain;" title="SMA Muhammadiyah 9 Brondong">
+            <img src="logo-umy.png" alt="Logo UMY" class="topbar-logo-item" style="height: 42px; width: auto; object-fit: contain;" title="Universitas Muhammadiyah Yogyakarta">
+            <img src="logo-lp3m.png" alt="Logo DRP UMY" class="topbar-logo-item hide-mobile" style="height: 38px; width: auto; object-fit: contain;" title="Direktorat Riset & Pengabdian Masyarakat UMY">
+            <img src="logo-admisi.png" alt="Logo Admisi UMY" class="topbar-logo-item hide-mobile" style="height: 38px; width: auto; object-fit: contain;" title="Admisi UMY">
+        </div>
+    </div>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
     <!-- HEADER / NAVIGATION -->
     <header>
+        <!-- Close Button (Mobile Only) -->
+        <button class="sidebar-close-btn" onclick="toggleSidebar()" aria-label="Tutup Menu">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
         <div class="navbar">
-            <div class="logo-container">
+            <div class="logo-container" onclick="switchPage('beranda')" style="cursor: pointer;">
                 <img src="logo.png" onerror="handleLogoError(this)" alt="Logo KKN" class="logo-icon" style="width: auto; height: 38px; object-fit: contain;">
                 <div class="logo-text-wrapper">
-                    <div class="logo-text">KKN <span>Sahabat Sekolah Jawa Timur</span></div>
-                    <div class="logo-subtext">SMA Muhammadiyah 9 Brondong</div>
+                    <div class="logo-text">KKN <span>Sahabat Sekolah UMY</span></div>
+                    <div class="logo-subtext">SMA MUHAMMADIYAH 9 BRONDONG LAMONGAN</div>
                 </div>
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a class="nav-link active" data-slide="0">About Us</a></li>
-                    <li><a class="nav-link" data-slide="1">Beranda</a></li>
-                    <li><a class="nav-link" data-slide="2">Apa itu AI?</a></li>
-                    <li><a class="nav-link" data-slide="3">Bahaya AI</a></li>
-                    <li><a class="nav-link" data-slide="4">Metode CTIF</a></li>
-                    <li><a class="nav-link" data-slide="5">Demo Prompt</a></li>
-                    <li><a class="nav-link" data-slide="6">Koreksi Tugas</a></li>
-                    <li><a class="nav-link" data-slide="7">Etika AI</a></li>
-                    <li><a class="nav-link" data-slide="8">Kuis</a></li>
-                    <li><a class="nav-link" data-slide="9">Penutup</a></li>
+                    <li class="nav-category">Portal Utama</li>
+                    <li>
+                        <a class="nav-link active" data-page="beranda">
+                            <svg class="nav-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                            <span>Beranda</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-category">Program Kerja</li>
+                    <li>
+                        <a class="nav-link" data-page="proker-ai">
+                            <svg class="nav-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4M9 9h6v6H9z"/></svg>
+                            <span>Bijak Menggunakan AI</span>
+                        </a>
+                        <!-- Submenu slide AI yang hanya muncul jika menu AI aktif -->
+                        <ul class="nav-submenu" id="submenu-ai">
+                            <li><a class="nav-sublink active" data-slide="0">Beranda AI</a></li>
+                            <li><a class="nav-sublink" data-slide="1">Apa itu AI?</a></li>
+                            <li><a class="nav-sublink" data-slide="2">Bahaya AI</a></li>
+                            <li><a class="nav-sublink" data-slide="3">Metode CTIF</a></li>
+                            <li><a class="nav-sublink" data-slide="4">Demo Prompt</a></li>
+                            <li><a class="nav-sublink" data-slide="5">Koreksi Tugas</a></li>
+                            <li><a class="nav-sublink" data-slide="6">Etika AI</a></li>
+                            <li><a class="nav-sublink" data-slide="7">Kuis Mini</a></li>
+                            <li><a class="nav-sublink" data-slide="8">Penutup</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" data-page="proker-creative">
+                            <svg class="nav-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21h8M12 17v4M3 4h18M4 4h16v12H4V4z"/></svg>
+                            <span>Creative Presentation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" data-page="proker-karakter">
+                            <svg class="nav-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            <span>Karakter Muda</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" data-page="proker-gerbang">
+                            <svg class="nav-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222m0 0l4 2.222v7.5"/></svg>
+                            <span>Gerbang Kampus</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- SLIDE INDICATOR -->
-    <div class="slide-indicator">
-        <div class="indicator-dot active" data-slide="0" title="About Us"></div>
-        <div class="indicator-dot" data-slide="1" title="Beranda"></div>
-        <div class="indicator-dot" data-slide="2" title="Apa itu AI?"></div>
-        <div class="indicator-dot" data-slide="3" title="Bahaya AI"></div>
-        <div class="indicator-dot" data-slide="4" title="Metode CTIF"></div>
-        <div class="indicator-dot" data-slide="5" title="Demo Prompt"></div>
-        <div class="indicator-dot" data-slide="6" title="Koreksi Tugas"></div>
-        <div class="indicator-dot" data-slide="7" title="Etika AI"></div>
-        <div class="indicator-dot" data-slide="8" title="Kuis"></div>
-        <div class="indicator-dot" data-slide="9" title="Penutup"></div>
+    <!-- SLIDE INDICATOR (Hanya terlihat ketika berada di Halaman Proker AI) -->
+    <div class="slide-indicator" id="lateral-slide-dots" style="display: none;">
+        <div class="indicator-dot active" data-slide="0" title="Beranda AI"></div>
+        <div class="indicator-dot" data-slide="1" title="Apa itu AI?"></div>
+        <div class="indicator-dot" data-slide="2" title="Bahaya AI"></div>
+        <div class="indicator-dot" data-slide="3" title="Metode CTIF"></div>
+        <div class="indicator-dot" data-slide="4" title="Demo Prompt"></div>
+        <div class="indicator-dot" data-slide="5" title="Koreksi Tugas"></div>
+        <div class="indicator-dot" data-slide="6" title="Etika AI"></div>
+        <div class="indicator-dot" data-slide="7" title="Kuis"></div>
+        <div class="indicator-dot" data-slide="8" title="Penutup"></div>
     </div>
 
     <!-- MAIN SECTIONS -->
     <main>
 
-        <!-- SLIDE 1: ABOUT US -->
-        <section id="slide-about" class="slide">
-            <div class="container">
-                <div class="section-header">
-                    <span class="badge">Perkenalan</span>
-                    <h2 class="text-gradient-seafoam">Tentang Kami</h2>
-                    <p>Halo! Kami adalah mahasiswa Kuliah Kerja Nyata (KKN) Universitas Muhammadiyah Yogyakarta (UMY) yang siap mendampingi adik-adik di SMA Muhammadiyah 9 Brondong.</p>
-                </div>
-                <div class="team-cards-grid">
-                    <!-- Anggota 1 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👨‍🎓</div>
+        <!-- PAGE 1: BERANDA PORTAL UTAMA -->
+        <div id="page-beranda" class="page-view active">
+            <!-- HERO SECTION -->
+            <section class="hero-portal" style="padding: 40px 0;">
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <h1 class="text-gradient-seafoam" style="font-size: 2.8rem; line-height: 1.15; font-weight: 800;">KKN Sahabat Sekolah Lamongan</h1>
+                            <p style="margin-top: 1rem;">Selamat datang di website resmi KKN Universitas Muhammadiyah Yogyakarta (UMY) Kelompok Sahabat Sekolah Jawa Timur. Kami mengabdi di SMA Muhammadiyah 9 Brondong untuk menginspirasi siswa melalui penguasaan teknologi digital, pengembangan soft skill, edukasi karakter moral, dan persiapan menuju perguruan tinggi.</p>
+                            <div class="hero-buttons" style="margin-top: 1.8rem;">
+                                <button class="btn btn-primary" onclick="switchPage('proker-ai')">
+                                    Mulai Jelajah
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                                </button>
+                                <button class="btn btn-secondary" onclick="scrollToElement('profil-tim')">Lihat Anggota Tim</button>
+                            </div>
                         </div>
-                        <h3 class="team-card-name">Nama Anggota 1</h3>
-                    </div>
-                    <!-- Anggota 2 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👩‍🎓</div>
+                        <div class="hero-graphic">
+                             <img src="logo.png" onerror="handleLogoError(this)" alt="Logo KKN" class="ocean-art" style="max-width: 280px; filter: drop-shadow(0 8px 24px rgba(12, 119, 173, 0.15));">
                         </div>
-                        <h3 class="team-card-name">Nama Anggota 2</h3>
-                    </div>
-                    <!-- Anggota 3 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👨‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 3</h3>
-                    </div>
-                    <!-- Anggota 4 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👩‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 4</h3>
-                    </div>
-                    <!-- Anggota 5 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👨‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 5</h3>
-                    </div>
-                    <!-- Anggota 6 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👩‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 6</h3>
-                    </div>
-                    <!-- Anggota 7 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👨‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 7</h3>
-                    </div>
-                    <!-- Anggota 8 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👩‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 8</h3>
-                    </div>
-                    <!-- Anggota 9 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👨‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 9</h3>
-                    </div>
-                    <!-- Anggota 10 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👩‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 10</h3>
-                    </div>
-                    <!-- Anggota 11 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👨‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 11</h3>
-                    </div>
-                    <!-- Anggota 12 -->
-                    <div class="team-card">
-                        <div class="team-card-img-container">
-                            <div class="team-card-placeholder-avatar">👩‍🎓</div>
-                        </div>
-                        <h3 class="team-card-name">Nama Anggota 12</h3>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- SLIDE 2: HERO (BERANDA) -->
-        <section id="slide-hero" class="slide">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <span class="badge badge-gold">Sosialisasi Edukasi</span>
-                        <h1 class="text-gradient-seafoam">Bijak Menggunakan AI untuk Pembelajaran</h1>
-                        <p>Bagaimana cara cerdas dan bertanggung jawab memanfaatkan teknologi AI untuk membantu kegiatan belajar sekolah tanpa melanggar kejujuran akademik.</p>
-                        <div class="hero-buttons">
-                            <button class="btn btn-primary" onclick="scrollToSlide(2)">
-                                Mulai Presentasi
-                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-                            </button>
-                            <button class="btn btn-secondary" onclick="scrollToSlide(8)">Bermain Kuis</button>
+            <!-- LOKASI PENGABDIAN SECTION -->
+            <section id="lokasi-kkn" style="padding: 20px 0; margin-bottom: 2rem;">
+                <div class="container">
+                    <div class="glass-card" style="padding: 2rem;">
+                        <div class="section-header" style="text-align: left; margin-bottom: 1.5rem; margin-left: 0; margin-right: 0; max-width: 100%;">
+                            <h2 class="text-gradient-seafoam" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Lokasi Pengabdian Kami</h2>
+                            <p style="margin: 0;">SMA Muhammadiyah 9 Brondong terletak di Kecamatan Brondong, Kabupaten Lamongan, Provinsi Jawa Timur.</p>
+                        </div>
+                        
+                        <!-- Map / Image Container -->
+                        <!-- Map Container (Full Width) -->
+                        <div class="location-container">
+                            <div class="location-media-wrapper">
+                                <iframe src="https://maps.google.com/maps?q=SMA%20Muhammadiyah%209%20Brondong%20Lamongan&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
                         </div>
                     </div>
-                    <div class="hero-graphic">
-                         <img src="logo.png" onerror="handleLogoError(this)" alt="Logo KKN Lamongan 2026" class="ocean-art" style="filter: drop-shadow(0 8px 16px rgba(11, 50, 66, 0.08));">
+                </div>
+            </section>
+
+            <!-- PROKER GRID SECTION -->
+            <section style="padding: 20px 0;">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="text-gradient-seafoam">Program Kerja Unggulan Kami</h2>
+                        <p>Berikut adalah 4 pilar pengabdian KKN Sahabat Sekolah UMY untuk mencerdaskan dan membentuk karakter tangguh bagi siswa-siswi SMA Muhammadiyah 9 Brondong.</p>
+                    </div>
+                    
+                    <div class="proker-grid">
+                        <!-- Card 1: AI -->
+                        <div class="proker-card">
+                            <div class="proker-card-body">
+                                <h3>Bijak Menggunakan AI</h3>
+                                <p>Sosialisasi pemanfaatan teknologi AI secara cerdas dan etis dengan rumus jitu Metode CTIF untuk meningkatkan kualitas belajar tanpa plagiasi.</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="switchPage('proker-ai')" style="width: 100%; justify-content: center;">Buka Program</button>
+                        </div>
+                        
+                        <!-- Card 2: Creative Presentation -->
+                        <div class="proker-card">
+                            <div class="proker-card-body">
+                                <h3>Creative Presentation</h3>
+                                <p>Workshop Canva untuk membekali keterampilan desain digital ditambah pelatihan public speaking untuk meningkatkan rasa percaya diri siswa di depan umum.</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="switchPage('proker-creative')" style="width: 100%; justify-content: center;">Buka Program</button>
+                        </div>
+                        
+                        <!-- Card 3: Karakter Muda -->
+                        <div class="proker-card">
+                            <div class="proker-card-body">
+                                <h3>Karakter Muda</h3>
+                                <p>Edukasi pencegahan bahaya pergaulan bebas (revenge porn, kehamilan dini) serta literasi keuangan dasar guna menghindari gaya hidup konsumtif/pinjol.</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="switchPage('proker-karakter')" style="width: 100%; justify-content: center;">Buka Program</button>
+                        </div>
+                        
+                        <!-- Card 4: Gerbang Kampus -->
+                        <div class="proker-card">
+                            <div class="proker-card-body">
+                                <h3>Gerbang Kampus</h3>
+                                <p>Sosialisasi profil UMY, program studi, rincian biaya kuliah, serta berbagai skema beasiswa perguruan tinggi untuk membuka wawasan masa depan siswa.</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="switchPage('proker-gerbang')" style="width: 100%; justify-content: center;">Buka Program</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- TEAM SECTION -->
+            <section id="profil-tim" style="padding: 40px 0; background: #ffffff;">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="text-gradient-seafoam">Siapa Kami?</h2>
+                        <p>Kami adalah 12 mahasiswa Universitas Muhammadiyah Yogyakarta dari berbagai program studi yang tergabung dalam Kelompok KKN Sahabat Sekolah Jawa Timur 2026.</p>
+                    </div>
+                    
+                    <!-- KOTAK FOTO BERSAMA KELOMPOK -->
+                    <div class="glass-card group-photo-card" style="padding: 1.5rem; text-align: center; margin-bottom: 2.5rem; width: 100%;">
+                        <div class="group-photo-placeholder" style="width: 100%; aspect-ratio: 21 / 9; background: var(--primary-light); border: 2px dashed var(--primary); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--primary); gap: 0.5rem; overflow: hidden; position: relative;">
+                            <span style="font-size: 3rem;">📸</span>
+                            <h3 style="color: var(--primary); margin: 0; font-size: 1.3rem;">Foto Bersama KKN Sahabat Sekolah UMY</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; max-width: 450px;">Silakan ganti placeholder ini dengan foto bersama kelompok KKN Anda di SMA Muhammadiyah 9 Brondong</p>
+                            <!-- Ganti dengan tag img jika sudah memiliki file fotonya: -->
+                            <!-- <img src="foto_bersama.jpg" alt="Foto Bersama KKN" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;"> -->
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 1.5rem; margin-bottom: 3.5rem; text-align: center; width: 100%;">
+                        <div style="margin-bottom: 0.8rem; font-size: 0.75rem; color: #a88118; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Dosen Pembimbing Lapangan (DPL)</div>
+                        <div class="team-card dpl-card" style="width: 200px; border: 2.5px solid var(--accent); background: linear-gradient(145deg, #ffffff, var(--primary-light)); margin: 0 auto; box-shadow: 0 8px 30px rgba(12, 119, 173, 0.08); transition: var(--transition-smooth);">
+                            <div class="team-card-img-container" style="border-color: var(--accent); margin-bottom: 0.8rem;">
+                                <div class="team-card-placeholder-avatar" style="font-size: 2.2rem; background: var(--accent-light);">👨‍🏫</div>
+                            </div>
+                            <h3 class="team-card-name" style="color: var(--primary); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem;">Nama DPL</h3>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0; font-weight: 600;">Dosen Pembimbing UMY</p>
+                        </div>
+                    </div>
+
+                    <div class="team-cards-grid">
+                        <!-- Anggota 1 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👨‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 1</h3>
+                        </div>
+                        <!-- Anggota 2 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👩‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 2</h3>
+                        </div>
+                        <!-- Anggota 3 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👨‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 3</h3>
+                        </div>
+                        <!-- Anggota 4 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👩‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 4</h3>
+                        </div>
+                        <!-- Anggota 5 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👨‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 5</h3>
+                        </div>
+                        <!-- Anggota 6 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👩‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 6</h3>
+                        </div>
+                        <!-- Anggota 7 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👨‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 7</h3>
+                        </div>
+                        <!-- Anggota 8 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👩‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 8</h3>
+                        </div>
+                        <!-- Anggota 9 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👨‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 9</h3>
+                        </div>
+                        <!-- Anggota 10 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👩‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 10</h3>
+                        </div>
+                        <!-- Anggota 11 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👨‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 11</h3>
+                        </div>
+                        <!-- Anggota 12 -->
+                        <div class="team-card">
+                            <div class="team-card-img-container">
+                                <div class="team-card-placeholder-avatar">👩‍🎓</div>
+                            </div>
+                            <h3 class="team-card-name">Nama Anggota 12</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: PROKER - BIJAK AI (PRESENTATION SLIDES) -->
+        <div id="page-proker-ai" class="page-view">
+            <!-- SLIDE 1: HERO (BERANDA AI COVER) -->
+            <section id="slide-hero" class="slide" style="align-items: center; justify-content: center; min-height: 85vh; position: relative; overflow: hidden; background: linear-gradient(135deg, #f5f7f6 0%, #eef3f1 100%); padding: 80px 0;">
+                <!-- Ornamen Latar Belakang -->
+                <div style="position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(12, 119, 173, 0.12) 0%, rgba(12, 119, 173, 0) 70%); top: 10%; left: 15%; border-radius: 50%; filter: blur(40px); pointer-events: none;"></div>
+                <div style="position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(207, 163, 40, 0.08) 0%, rgba(207, 163, 40, 0) 70%); bottom: 10%; right: 10%; border-radius: 50%; filter: blur(50px); pointer-events: none;"></div>
+
+                <div class="container" style="position: relative; z-index: 2; display: flex; justify-content: center; width: 100%;">
+                    <div class="glass-card" style="max-width: 800px; width: 100%; padding: 3rem 2.2rem; text-align: center; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 20px 45px rgba(11, 50, 66, 0.06); display: flex; flex-direction: column; align-items: center; gap: 1.2rem;">
+                        <div style="font-size: 0.75rem; letter-spacing: 0.5px; color: #a88118; font-weight: 700; text-transform: uppercase;">Sosialisasi Edukasi</div>
+                        <h1 class="text-gradient-seafoam" style="font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin: 0.5rem 0;">Bijak Menggunakan AI untuk Pembelajaran</h1>
+                        <p style="font-size: 0.92rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin: 0;">Bagaimana cara cerdas dan bertanggung jawab memanfaatkan teknologi AI untuk membantu kegiatan belajar sekolah tanpa melanggar kejujuran akademik.</p>
+                    </div>
+                </div>
+            </section>
 
         <!-- SLIDE 3: APA ITU AI -->
         <section id="slide-definition" class="slide">
             <div class="container">
                 <div class="section-header">
-                    <span class="badge">Konsep Dasar</span>
+                    <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Konsep Dasar</div>
                     <h2 class="text-gradient-seafoam">Mengenal Kecerdasan Buatan (AI)</h2>
                     <p><em>"Apa yang kalian pikirkan ketika pertama kali mendengar kata AI?"</em></p>
                 </div>
                 <div class="vs-container">
                     <!-- Definisi AI -->
                     <div class="glass-card vs-card traditional">
-                        <h3>🤖 Apa itu Kecerdasan Buatan?</h3>
+                        <h3>Apa itu Kecerdasan Buatan?</h3>
                         <p class="intro-desc">Kecerdasan Buatan (Artificial Intelligence) adalah cabang ilmu komputer yang bertujuan membuat sistem mesin agar mampu **mensimulasikan kecerdasan manusia**.</p>
                         <p class="intro-desc">Melalui teknologi ini, komputer dilatih untuk melakukan tugas kognitif seperti belajar dari contoh, menalar logika, memecahkan masalah, dan mengenali lingkungan.</p>
                     </div>
                     <!-- Sebelum vs Sesudah AI -->
                     <div class="glass-card vs-card ai">
-                        <h3>⚖️ Sebelum vs Sesudah AI</h3>
+                        <h3>Sebelum vs Sesudah AI</h3>
                         <p class="intro-desc">Mari amati perbedaan cara komputer bekerja sebelum dan sesudah ada teknologi kecerdasan buatan.</p>
                         <div class="vs-flow">
                             <div class="flow-step">
@@ -205,9 +379,8 @@
                     </div>
                 </div>
 
-                <!-- Interactive Slider -->
                 <div class="glass-card interactive-slider-box">
-                    <span class="badge badge-gold">Interaktif: Geser Slider di Bawah!</span>
+                    <div style="font-size: 0.75rem; color: #a88118; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem;">Interaktif: Geser Slider di Bawah!</div>
                     <div class="slider-wrapper">
                         <span class="slider-label left">Sebelum AI</span>
                         <input type="range" min="0" max="1" step="1" value="0" class="slider-input" id="concept-slider">
@@ -224,7 +397,7 @@
         <section id="slide-dangers" class="slide">
             <div class="container">
                 <div class="section-header">
-                    <span class="badge badge-gold">Sisi Negatif</span>
+                    <div style="font-size: 0.75rem; color: #a88118; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Sisi Negatif</div>
                     <h2 class="text-gradient-seafoam">Bahaya Penyalahgunaan AI</h2>
                     <p>Teknologi bagaikan pisau bermata dua. Jika disalahgunakan secara tidak etis, AI dapat menimbulkan masalah serius dalam hidup sehari-hari.</p>
                 </div>
@@ -264,7 +437,7 @@
         <section id="slide-prompting-basics" class="slide">
             <div class="container">
                 <div class="section-header">
-                    <span class="badge">Practical Session</span>
+                    <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Practical Session</div>
                     <h2 class="text-gradient-seafoam">Dasar-Dasar Teknik Prompting</h2>
                     <p><strong>Prompting</strong> adalah seni memberikan instruksi teks kepada AI agar sistem dapat menghasilkan respon jawaban yang akurat.</p>
                 </div>
@@ -318,7 +491,7 @@
         <section id="slide-prompt-demo" class="slide">
             <div class="container">
                 <div class="section-header">
-                    <span class="badge">Uji Perbandingan</span>
+                    <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Uji Perbandingan</div>
                     <h2 class="text-gradient-seafoam">Contoh Prompt Salah vs Benar</h2>
                     <p>Mari amati seberapa jauh perbedaan kualitas respon asisten AI saat diberikan perintah biasa (salah) vs perintah berformat CTIF (benar).</p>
                 </div>
@@ -361,7 +534,7 @@
         <section id="slide-prompt-grader" class="slide">
             <div class="container">
                 <div class="section-header">
-                    <span class="badge badge-gold">Praktik Kelas</span>
+                    <div style="font-size: 0.75rem; color: #a88118; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Praktik Kelas</div>
                     <h2 class="text-gradient-seafoam">Lembar Latihan Menulis Prompt</h2>
                     <p>Saatnya kalian mempraktikkan Metode CTIF! Ketik prompt kalian di kolom kiri, lalu periksakan hasilnya.</p>
                 </div>
@@ -408,24 +581,24 @@
         <section id="slide-ethics" class="slide">
             <div class="container">
                 <div class="section-header">
-                    <span class="badge">Etika Penggunaan Teknologi</span>
+                    <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Etika Penggunaan Teknologi</div>
                     <h2 class="text-gradient-seafoam">Etika Bijak Menggunakan AI</h2>
                     <p>Teknologi hanyalah alat bantu. Penggunanyalah yang menentukan apakah alat tersebut membawa kebaikan atau keburukan.</p>
                 </div>
                 <div class="ethics-grid">
                     <!-- Kejujuran -->
                     <div class="glass-card ethics-card honesty">
-                        <h3>🔑 1. Kejujuran</h3>
+                        <h3>1. Kejujuran</h3>
                         <p>Jaga kejujuran akademik saat mengerjakan tugas. AI boleh dipakai untuk mendiskusikan ide baru atau menerangkan konsep rumit, tetapi dilarang keras mengakui hasil tulisan AI sebagai karya asli ciptaan sendiri.</p>
                     </div>
                     <!-- Privasi -->
                     <div class="glass-card ethics-card privacy">
-                        <h3>🔒 2. Privasi</h3>
+                        <h3>2. Privasi</h3>
                         <p>Selalu lindungi informasi pribadi Anda maupun orang lain. Jangan pernah mengetik data sensitif seperti kata sandi, alamat rumah, nomor HP, foto wajah pribadi, atau dokumen penting lainnya ke platform AI.</p>
                     </div>
                     <!-- Tanggung Jawab -->
                     <div class="glass-card ethics-card responsibility">
-                        <h3>⚖️ 3. Tanggung Jawab</h3>
+                        <h3>3. Tanggung Jawab</h3>
                         <p>Pastikan setiap data jawaban yang diberikan AI selalu ditinjau kembali (fakta & kebenaran). Kita bertanggung jawab penuh atas informasi palsu yang kita sebarkan akibat tidak melakukan kroscek (*fact-checking*).</p>
                     </div>
                 </div>
@@ -436,7 +609,7 @@
         <section id="slide-quiz" class="slide">
             <div class="container">
                 <div class="section-header">
-                    <span class="badge badge-gold">Games Time</span>
+                    <div style="font-size: 0.75rem; color: #a88118; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Games Time</div>
                     <h2 class="text-gradient-seafoam">Kuis Mini AI & Etika</h2>
                     <p>Yuk jawab pertanyaan kuis di bawah untuk mengetes sejauh mana kalian memahami materi sosialisasi hari ini!</p>
                 </div>
@@ -498,7 +671,7 @@
                     </div>
 
                     <div style="display:flex; flex-direction:column; align-items:center; gap: 0.8rem;">
-                        <h4 style="color: var(--primary); font-size: 1.1rem;">Sesi Tanya Jawab (QnA) 🙋‍♀️🙋‍♂️</h4>
+                        <h4 style="color: var(--primary); font-size: 1.1rem;">Sesi Tanya Jawab (QnA)</h4>
                         <div class="team-grid">
                             <div class="team-member">Universitas Muhammadiyah Yogyakarta (UMY)</div>
                             <div class="team-member">SMA Muhammadiyah 9 Brondong</div>
@@ -510,8 +683,256 @@
                         <p class="footer-copy">&copy; KKN Sahabat Sekolah Jawa Timur 2026. Sosialisasi Bijak AI.</p>
                     </div>
                 </div>
-            </div>
         </section>
+        </div> <!-- End of #page-proker-ai -->
+
+        <!-- PAGE 3: PROKER - CREATIVE PRESENTATION -->
+        <div id="page-proker-creative" class="page-view">
+            <section style="padding: 40px 0;">
+                <div class="container">
+                    <div class="section-header">
+                        <div style="font-size: 0.75rem; color: #a88118; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Program Kerja 2</div>
+                        <h2 class="text-gradient-seafoam">Creative Presentation & Public Speaking</h2>
+                        <p>Mengajarkan keterampilan dasar menggunakan aplikasi Canva sebagai sarana pembuatan slide presentasi yang menarik dan melatih teknik public speaking untuk meningkatkan kepercayaan diri siswa di depan umum.</p>
+                    </div>
+
+                    <div class="creative-layout">
+                        <!-- Kiri: Canva Slide Designer (Palet & Layout Helper) -->
+                        <div class="glass-card slide-designer">
+                            <div style="font-size: 0.75rem; color: #a88118; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem;">Interaktif: Canva Slide Designer</div>
+                            <h3 style="margin-bottom: 0.8rem;">Visualisasi Desain Slide</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">Pilih gaya desain untuk melihat kombinasi palet warna dan rekomendasi layout slide yang profesional:</p>
+                            
+                            <!-- Slide Preview Box -->
+                            <div class="slide-preview-container" id="slide-preview">
+                                <div class="slide-preview-content" id="slide-preview-content" style="background: #0c77ad; color: #ffffff;">
+                                    <span class="slide-preview-badge" id="preview-badge" style="background: #cfa328; color: white;">Pendidikan</span>
+                                    <h4 class="slide-preview-title" id="preview-title">Bijak Menggunakan Teknologi</h4>
+                                    <p class="slide-preview-desc" id="preview-desc">Gunakan kontras warna yang tinggi dan ukuran teks minimal 24pt agar materi presentasi mudah dibaca audiens dari jarak jauh.</p>
+                                </div>
+                            </div>
+
+                            <!-- Selector Grid -->
+                            <div class="style-selector-grid">
+                                <button class="style-btn active" id="btn-style-teal" onclick="changeSlideStyle('teal-gold')">
+                                    <div class="style-btn-title">Teal & Gold (Corporate)</div>
+                                    <div class="style-btn-desc">Sangat cocok untuk presentasi formal/bisnis.</div>
+                                </button>
+                                <button class="style-btn" id="btn-style-vibrant" onclick="changeSlideStyle('vibrant')">
+                                    <div class="style-btn-title">Vibrant Coral (Kreatif)</div>
+                                    <div class="style-btn-desc">Cocok untuk tema seni, ide kreatif & startup.</div>
+                                </button>
+                                <button class="style-btn" id="btn-style-pastel" onclick="changeSlideStyle('pastel')">
+                                    <div class="style-btn-title">Soft Pastel (Edukasi)</div>
+                                    <div class="style-btn-desc">Lembut di mata, pas untuk pembelajaran sekolah.</div>
+                                </button>
+                                <button class="style-btn" id="btn-style-dark" onclick="changeSlideStyle('dark')">
+                                    <div class="style-btn-title">Dark Glassmorphic</div>
+                                    <div class="style-btn-desc">Mewah dan futuristik dengan kontras tinggi.</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Kanan: Speech Confidence Simulator -->
+                        <div class="glass-card speech-simulator-card">
+                            <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem;">Interaktif: Speech Confidence Simulator</div>
+                            <h3 style="margin-bottom: 0.8rem;">Melatih Public Speaking</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Gugup saat bicara di depan kelas? Dapatkan topik presentasi acak dan pelajari trik cara menyampaikannya:</p>
+                            
+                            <!-- Topic Display -->
+                            <div class="speech-topic-box" id="speech-topic-box">
+                                <span class="speech-topic-badge" id="speech-badge">Status: Siap Mencoba</span>
+                                <h4 class="speech-topic-title" id="speech-title">Tekan tombol di bawah untuk mendapatkan topik dan tips latihan!</h4>
+                                <ul class="speech-tips-list" id="speech-tips" style="display: none;">
+                                    <!-- Dinamis lewat JS -->
+                                </ul>
+                            </div>
+
+                            <button class="btn btn-accent" onclick="generateSpeechTopic()" style="width: 100%; justify-content: center;">Dapatkan Topik Presentasi Acak</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 4: PROKER - KARAKTER MUDA -->
+        <div id="page-proker-karakter" class="page-view">
+            <section style="padding: 40px 0;">
+                <div class="container">
+                    <div class="section-header">
+                        <div style="font-size: 0.75rem; color: #d9534f; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Program Kerja 3</div>
+                        <h2 class="text-gradient-seafoam">Pendidikan Karakter Muda</h2>
+                        <p>Edukasi komprehensif mengenai bahaya pergaulan bebas (seperti revenge porn, ancaman digital) serta pengenalan literasi keuangan dasar untuk melindungi remaja dari gaya hidup konsumtif dan bahaya pinjaman online.</p>
+                    </div>
+
+                    <div class="karakter-layout">
+                        <!-- Kiri: Scenario-based Decision Simulator -->
+                        <div class="glass-card scenario-box" id="scenario-box-wrapper">
+                            <div class="scenario-header">
+                                <span class="scenario-number-badge" id="scenario-num">Skenario 1 dari 2</span>
+                                <h3 class="scenario-title" id="scenario-title">Kasus Gaya Hidup Hedonis & Pinjol</h3>
+                                <p class="scenario-text" id="scenario-text">Loading skenario...</p>
+                            </div>
+
+                            <div class="scenario-options-wrapper">
+                                <div class="scenario-options" id="scenario-options">
+                                    <!-- Dinamis disuntik lewat JS -->
+                                </div>
+                                <div class="scenario-feedback" id="scenario-feedback">
+                                    Pilih opsi jawaban di atas untuk melihat analisis dampak keputusannya.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kanan: Budget Calculator (Anti Hedonisme & Pinjol) -->
+                        <div class="glass-card finance-tracker-card">
+                            <div style="font-size: 0.75rem; color: #d9534f; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem;">Penyuluhan Literasi Keuangan</div>
+                            <h3 style="margin-bottom: 0.8rem;">Cek Kesehatan Finansial</h3>
+                            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">Simulasikan uang saku bulananmu dan pengeluaran gaya hidup untuk melihat risikonya:</p>
+                            
+                            <div class="finance-input-group">
+                                <label class="finance-label">Uang Saku Bulanan (Rp)</label>
+                                <div class="finance-input-wrapper">
+                                    <span class="finance-currency-symbol">Rp</span>
+                                    <input type="number" class="finance-input" id="finance-income" value="300000" placeholder="Masukkan nominal">
+                                </div>
+                            </div>
+
+                            <div class="finance-input-group">
+                                <label class="finance-label">Biaya Nongkrong / Kopi (Rp/bulan)</label>
+                                <div class="finance-input-wrapper">
+                                    <span class="finance-currency-symbol">Rp</span>
+                                    <input type="number" class="finance-input" id="finance-hangout" value="150000" placeholder="Masukkan nominal">
+                                </div>
+                            </div>
+
+                            <div class="finance-input-group">
+                                <label class="finance-label">Belanja Gadget & Skincare Hedon (Rp/bulan)</label>
+                                <div class="finance-input-wrapper">
+                                    <span class="finance-currency-symbol">Rp</span>
+                                    <input type="number" class="finance-input" id="finance-shopping" value="100000" placeholder="Masukkan nominal">
+                                </div>
+                            </div>
+
+                            <div class="finance-input-group">
+                                <label class="finance-label">Kebutuhan Esensial Sekolah (Rp/bulan)</label>
+                                <div class="finance-input-wrapper">
+                                    <span class="finance-currency-symbol">Rp</span>
+                                    <input type="number" class="finance-input" id="finance-school" value="50000" placeholder="Masukkan nominal">
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="calculateFinance()" style="width: 100%; justify-content: center; background: #d9534f; box-shadow: 0 4px 12px rgba(217, 83, 79, 0.15);">Hitung Risiko Finansial</button>
+
+                            <div class="finance-result-box" id="finance-result">
+                                <div class="finance-result-status" id="finance-status">Sisa Dana: Rp0</div>
+                                <p class="finance-result-desc" id="finance-desc">Masukkan angka pengeluaran dan tekan tombol hitung.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 5: PROKER - GERBANG KAMPUS -->
+        <div id="page-proker-gerbang" class="page-view">
+            <section style="padding: 40px 0;">
+                <div class="container">
+                    <div class="section-header">
+                        <div style="font-size: 0.75rem; color: #3c7d9e; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Program Kerja 4</div>
+                        <h2 class="text-gradient-seafoam">Gerbang Kampus (Pre-University UMY)</h2>
+                        <p>Mengenalkan profil Universitas Muhammadiyah Yogyakarta (UMY) secara interaktif, membantu mengarahkan minat studi siswa ke fakultas yang sesuai, serta mensosialisasikan peluang beasiswa kuliah.</p>
+                    </div>
+
+                    <div class="gerbang-layout">
+                        <!-- Kiri: Quiz Cari Jurusan Impian -->
+                        <div class="glass-card major-quiz-card" id="major-quiz-wrapper">
+                            <!-- Pertanyaan Kuis -->
+                            <div id="major-quiz-panel">
+                                <div class="major-quiz-progress">
+                                    <span id="major-progress-text">Pertanyaan 1 dari 4</span>
+                                    <span style="font-weight: 700;">Quiz Minat Prodi UMY</span>
+                                </div>
+                                <h3 class="major-quiz-q" id="major-question">Apa mata pelajaran yang paling kamu sukai di sekolah?</h3>
+                                <div class="major-quiz-options" id="major-options">
+                                    <!-- JS content injection -->
+                                </div>
+                            </div>
+
+                            <!-- Hasil Kuis -->
+                            <div class="major-result-panel" id="major-result-panel">
+                                <h3 class="major-result-title">Rekomendasi Rumpun UMY Anda:</h3>
+                                <div class="major-result-badge" id="major-recommended">Fakultas Teknik</div>
+                                <p class="major-result-desc" id="major-result-desc">Berdasarkan jawabanmu, kamu memiliki minat kuat di bidang sains dan rekayasa teknologi.</p>
+                                <button class="btn btn-primary" onclick="restartMajorQuiz()" style="margin-top: 0.5rem;">Coba Ulangi Kuis</button>
+                            </div>
+                        </div>
+
+                        <!-- Kanan: Panel Beasiswa & Estimasi Biaya UMY -->
+                        <div class="glass-card scholarship-card">
+                            <div style="font-size: 0.75rem; color: #a88118; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem;">Muda Mendunia</div>
+                            <h3 style="margin-bottom: 0.8rem;">Info Beasiswa & Jalur Kuliah</h3>
+                            
+                            <!-- Tab Header -->
+                            <div class="scholarship-tabs">
+                                <button class="scholarship-tab-btn active" id="tab-btn-prestasi" onclick="switchScholarshipTab('prestasi')">Beasiswa</button>
+                                <button class="scholarship-tab-btn" id="tab-btn-kip" onclick="switchScholarshipTab('kip')">KIP Kuliah</button>
+                                <button class="scholarship-tab-btn" id="tab-btn-kader" onclick="switchScholarshipTab('kader')">Kader UMY</button>
+                                <button class="scholarship-tab-btn" id="tab-btn-fasilitas" onclick="switchScholarshipTab('fasilitas')">Keunggulan</button>
+                            </div>
+
+                            <!-- Tab 1: Beasiswa Prestasi -->
+                            <div class="scholarship-tab-content active" id="tab-content-prestasi">
+                                <div class="scholarship-item">
+                                    <h4>Beasiswa Jalur Prestasi (Bebas Tes)</h4>
+                                    <p>Seleksi berdasarkan nilai rapor semester 1-5 atau prestasi piagam akademik/non-akademik tingkat kabupaten/provinsi/nasional.</p>
+                                </div>
+                                <div class="scholarship-item">
+                                    <h4>Beasiswa Hafizh Al-Qur'an UMY</h4>
+                                    <p>Beasiswa bebas biaya SPP penuh bagi penghafal Al-Qur'an minimal 5 Juz (disertai sertifikat kelulusan uji hafalan).</p>
+                                </div>
+                            </div>
+
+                            <!-- Tab 2: KIP Kuliah -->
+                            <div class="scholarship-tab-content" id="tab-content-kip">
+                                <div class="scholarship-item">
+                                    <h4>Beasiswa KIP-Kuliah (Kemendikbud)</h4>
+                                    <p>Bantuan dana pendidikan penuh dan uang saku bulanan dari pemerintah bagi siswa berprestasi yang terkendala masalah ekonomi keluarga.</p>
+                                </div>
+                                <div class="scholarship-item">
+                                    <h4>Cara Mendaftar</h4>
+                                    <p>Daftarkan akun KIP-K terlebih dahulu di portal resmi Kemendikbud, lalu pilih jalur seleksi mandiri UMY KIP Kuliah saat pendaftaran dibuka.</p>
+                                </div>
+                            </div>
+
+                            <!-- Tab 3: Kader UMY -->
+                            <div class="scholarship-tab-content" id="tab-content-kader">
+                                <div class="scholarship-item">
+                                    <h4>Beasiswa Kader Muhammadiyah</h4>
+                                    <p>Diberikan khusus kepada kader aktif ikatan pelajar/pemuda Muhammadiyah yang mendapatkan rekomendasi dari Pimpinan Daerah Muhammadiyah (PDM).</p>
+                                </div>
+                                <div class="scholarship-item">
+                                    <h4>🤝 Kerja Sama Persyarikatan</h4>
+                                    <p>Potongan biaya SPP kuliah dan kemudahan pendaftaran bagi siswa lulusan sekolah Muhammadiyah mitra UMY.</p>
+                                </div>
+                            </div>
+
+                            <!-- Tab 4: Keunggulan -->
+                            <div class="scholarship-tab-content" id="tab-content-fasilitas">
+                                <div class="scholarship-item">
+                                    <h4>Student Exchange (Muda Mendunia)</h4>
+                                    <p>UMY memfasilitasi program pertukaran pelajar ke universitas luar negeri di Asia, Eropa, dan Australia yang dibiayai penuh oleh kampus.</p>
+                                </div>
+                                <div class="scholarship-item">
+                                    <h4>Fasilitas Bintang 5</h4>
+                                    <p>Laboratorium terintegrasi, perpustakaan terakreditasi internasional A, asrama mahasiswa Unires, dan lingkungan kampus hijau terakreditasi Unggul.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
     </main>
 
