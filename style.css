@@ -2244,3 +2244,113 @@ section.slide:nth-child(even) {
   }
 }
 
+/* ==========================================================================
+   MOBILE RESPONSIVENESS OVERRIDES (HP Friendly Optimization)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .location-media-wrapper {
+    aspect-ratio: 16 / 10 !important;
+    min-height: 250px !important;
+  }
+  
+  .group-photo-placeholder {
+    aspect-ratio: 16 / 9 !important;
+    padding: 1.2rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Layout & Container */
+  .container {
+    padding: 0 0.8rem !important;
+  }
+  
+  .glass-card {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  /* Topbar Spacing & Logo Sizes */
+  .mobile-topbar {
+    padding: 0 0.6rem !important;
+    height: 56px !important;
+  }
+  
+  .topbar-right-logos {
+    gap: 0.3rem !important;
+  }
+  
+  .topbar-logo-item {
+    height: 28px !important;
+  }
+  
+  /* Target UMY logo in topbar right to keep it slightly larger */
+  .topbar-logo-item[src*="logo-umy.png"],
+  .topbar-logo-item[src*="logo-umy"] {
+    height: 32px !important;
+  }
+  
+  /* Topbar Brand text */
+  .logo-container .logo-subtext {
+    display: none !important;
+  }
+  
+  .logo-container .logo-text {
+    font-size: 0.78rem !important;
+  }
+  
+  .logo-icon {
+    height: 28px !important;
+  }
+  
+  /* Typography */
+  .section-header h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .section-header p {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Hero Portal Home */
+  .hero-portal {
+    padding: 20px 0 !important;
+  }
+  
+  .hero-text h1 {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-text p {
+    font-size: 0.88rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+  
+  /* Compact Team grid */
+  .team-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.6rem !important;
+  }
+  
+  .team-card {
+    padding: 1.2rem 0.6rem !important;
+    border-radius: 12px !important;
+  }
+  
+  .team-card-name {
+    font-size: 0.85rem !important;
+  }
+  
+  .team-card-img-container {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .team-card-placeholder-avatar {
+    font-size: 1.5rem !important;
+  }
+}
+
