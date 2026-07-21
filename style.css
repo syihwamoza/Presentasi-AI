@@ -462,9 +462,6 @@ section.slide:nth-child(even) {
     padding: 75px 0 35px 0;
     min-height: auto;
   }
-  .nav-menu {
-    display: none; /* Rely on dots and links in content */
-  }
 }
 
 /* Section Header */
