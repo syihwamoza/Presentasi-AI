@@ -933,33 +933,28 @@ section.slide:nth-child(even) {
   background: #ffffff;
 }
 
-/* PLAYFUL STICKER "Tap Circle! 👀" */
+/* PLAYFUL STICKER "Tap Circle! 👀" (STATIC TEXT GLUED ON PHOTO) */
 .tap-circle-sticker {
   position: absolute;
-  top: 15px;
-  right: 25px;
+  top: 16px;
+  right: 28px;
   z-index: 25;
   font-family: var(--font-title);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 900;
   color: #1e1b4b;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 0.4rem 1.1rem;
-  border-radius: 22px;
-  box-shadow: 0 10px 25px rgba(12, 119, 173, 0.25);
-  border: 2.5px solid #0c77ad;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
   transform: rotate(8deg);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   pointer-events: none;
   user-select: none;
-  animation: stickerBounce 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes stickerBounce {
-  0% { transform: rotate(8deg) translateY(0); }
-  100% { transform: rotate(5deg) translateY(-6px); }
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.8));
 }
 
 .group-photo-wrapper {
