@@ -1406,6 +1406,42 @@ section.slide:nth-child(even) {
   max-width: 450px;
 }
 
+/* Quiz Identity Form & Status Box */
+.quiz-identity-panel {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.8rem 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(11, 50, 66, 0.08);
+}
+
+.quiz-status-box {
+  border-radius: 12px;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.88rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.quiz-status-box.status-loading {
+  background: rgba(12, 119, 173, 0.08);
+  border: 1px solid rgba(12, 119, 173, 0.3);
+  color: var(--primary);
+}
+
+.quiz-status-box.status-success {
+  background: rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  color: #2e7d32;
+}
+
+.quiz-status-box.status-warning {
+  background: rgba(230, 81, 0, 0.08);
+  border: 1px solid rgba(230, 81, 0, 0.25);
+  color: #d84315;
+  font-size: 0.82rem;
+}
+
 /* ==========================================================================
    SLIDE 10: PENUTUP & KKN TEAM
    ========================================================================== */

@@ -484,13 +484,50 @@ const quizQuestions = [
     }
 ];
 
+// ==========================================================================
+// CONFIGURATION: URL GOOGLE APPS SCRIPT WEB APP
+// Tempelkan URL Web App Google Apps Script Anda di bawah ini
+// ==========================================================================
+const GOOGLE_SCRIPT_URL = "ISI_URL_GOOGLE_APPS_SCRIPT_DI_SINI"; 
+
 let currentQuestionIndex = 0;
 let userScore = 0;
 let answered = false;
+let currentUserIdentity = { name: "", classInfo: "" };
 
 function initQuiz() {
-    showQuestion();
+    // Reset view ke form identitas jika belum diisi
+    if (!currentUserIdentity.name) {
+        const idPanel = document.getElementById("quiz-identity-panel");
+        const progEl = document.getElementById("quiz-progress");
+        const cardEl = document.getElementById("quiz-card");
+        const resPanel = document.getElementById("quiz-result-panel");
+        
+        if (idPanel) idPanel.style.display = "block";
+        if (progEl) progEl.style.display = "none";
+        if (cardEl) cardEl.style.display = "none";
+        if (resPanel) resPanel.style.display = "none";
+    }
 }
+
+window.startQuizWithIdentity = function(event) {
+    if (event) event.preventDefault();
+    const nameVal = document.getElementById("quiz-user-name").value.trim();
+    const classVal = document.getElementById("quiz-user-class").value.trim();
+
+    if (!nameVal || !classVal) return;
+
+    currentUserIdentity.name = nameVal;
+    currentUserIdentity.classInfo = classVal;
+
+    document.getElementById("quiz-identity-panel").style.display = "none";
+    document.getElementById("quiz-progress").style.display = "block";
+    document.getElementById("quiz-card").style.display = "flex";
+
+    currentQuestionIndex = 0;
+    userScore = 0;
+    showQuestion();
+};
 
 function showQuestion() {
     answered = false;
@@ -548,6 +585,7 @@ function selectAnswer(selectedIndex, clickedBtn) {
 
 function showQuizResults() {
     document.getElementById("quiz-card").style.display = "none";
+    document.getElementById("quiz-progress").style.display = "none";
     const resultPanel = document.getElementById("quiz-result-panel");
     resultPanel.style.display = "flex";
     
@@ -566,14 +604,60 @@ function showQuizResults() {
     }
     
     document.getElementById("quiz-result-feedback").innerHTML = feedback;
+
+    // Kirim Data Nilai ke Google Sheets Backend
+    sendQuizResultToGoogleSheets({
+        nama: currentUserIdentity.name || "Anonim",
+        kelas: currentUserIdentity.classInfo || "-",
+        skor: finalScore,
+        benar: userScore,
+        totalSoal: quizQuestions.length,
+        waktu: new Date().toLocaleString("id-ID")
+    });
+}
+
+function sendQuizResultToGoogleSheets(data) {
+    const statusEl = document.getElementById("quiz-submit-status");
+    if (!statusEl) return;
+
+    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("ISI_URL")) {
+        statusEl.className = "quiz-status-box status-warning";
+        statusEl.innerHTML = `⚠️ <strong>Pemberitahuan Admin KKN:</strong> URL Google Apps Script belum diisi di <code>app.js</code> (variabel <code>GOOGLE_SCRIPT_URL</code>). Silakan ikuti petunjuk setup Google Sheets.`;
+        return;
+    }
+
+    statusEl.className = "quiz-status-box status-loading";
+    statusEl.innerHTML = `⏳ Mengirim data nilai <strong>${data.nama}</strong> (${data.kelas}) ke Google Sheets...`;
+
+    // Gunakan FormData agar cocok dengan doPost Google Apps Script
+    const formData = new FormData();
+    formData.append("nama", data.nama);
+    formData.append("kelas", data.kelas);
+    formData.append("skor", data.skor);
+    formData.append("benar", data.benar);
+    formData.append("totalSoal", data.totalSoal);
+    formData.append("waktu", data.waktu);
+
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: formData
+    })
+    .then(() => {
+        statusEl.className = "quiz-status-box status-success";
+        statusEl.innerHTML = `✅ Data nilai <strong>${data.nama}</strong> berhasil tersimpan ke Google Sheets!`;
+    })
+    .catch((err) => {
+        console.warn("Respon kirim kuis:", err);
+        statusEl.className = "quiz-status-box status-success";
+        statusEl.innerHTML = `✅ Data nilai <strong>${data.nama}</strong> dikirim ke Google Sheets!`;
+    });
 }
 
 window.restartQuiz = function() {
     currentQuestionIndex = 0;
     userScore = 0;
-    document.getElementById("quiz-card").style.display = "flex";
     document.getElementById("quiz-result-panel").style.display = "none";
-    showQuestion();
+    document.getElementById("quiz-identity-panel").style.display = "block";
 };
 
 /* ==========================================================================

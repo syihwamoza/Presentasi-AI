@@ -1,0 +1,62 @@
+// ==========================================================================
+// KODE GOOGLE APPS SCRIPT (BACKEND GOOGLE SHEETS)
+// ==========================================================================
+//
+// PETUNJUK PEMASANGAN LENGKAP:
+//
+// STEP 1: Buat Google Sheets Baru
+//   1. Buka https://sheets.google.com di browser.
+//   2. Buat Spreadsheet baru, berikan nama misalnya: "Data Kuis KKN AI - SMA M 9".
+//
+// STEP 2: Buka Apps Script
+//   1. Di Google Sheets tersebut, klik menu di atas: Extensions (Ekstensi) -> Apps Script.
+//   2. Hapus semua kode default yang ada di dalam editor Apps Script (Code.gs).
+//   3. Copy (salin) seluruh kode di bawah ini dan Paste (tempel) ke editor tersebut:
+
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    
+    // Otomatis buat Header kolom jika spreadsheet masih kosong
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["Waktu Selesai", "Nama Lengkap", "Kelas / Instansi", "Skor Akhir", "Jawaban Benar", "Total Soal"]);
+      sheet.getRange(1, 1, 1, 6).setFontWeight("bold").setBackground("#0c77ad").setFontColor("#ffffff");
+    }
+    
+    var param = e.parameter;
+    var waktu = param.waktu || new Date().toLocaleString("id-ID");
+    var nama = param.nama || "Anonim";
+    var kelas = param.kelas || "-";
+    var skor = param.skor || 0;
+    var benar = param.benar || 0;
+    var totalSoal = param.totalSoal || 0;
+    
+    // Tambah baris data baru di tabel
+    sheet.appendRow([waktu, nama, kelas, skor, benar, totalSoal]);
+    
+    return ContentService.createTextOutput(JSON.stringify({ result: "success" }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ result: "error", error: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// STEP 3: Deploy sebagai Web App
+//   1. Di pojok kanan atas Apps Script, klik tombol biru "Deploy" -> pilih "New deployment".
+//   2. Pada jenis deployment (ikon gerigi / Select type), pilih "Web app".
+//   3. Isi deskripsi opsional: "Backend Kuis KKN".
+//   4. Di bagian "Execute as": Pilih "Me (Email Anda)".
+//   5. Di bagian "Who has access": Pilih "Anyone" (Siapa saja). PERINGATAN: Wajib pilih "Anyone" agar peserta kuis bisa mengirim data!
+//   6. Klik tombol "Deploy".
+//   7. Jika ada pop-up konfirmasi izin (Authorize access), klik "Authorize access" -> pilih Akun Google Anda -> klik "Advanced" -> klik "Go to Untitled project (unsafe)" -> klik "Allow".
+//   8. Salin (Copy) "Web app URL" yang muncul (contoh URL: https://script.google.com/macros/s/AKfycbx.../exec).
+//
+// STEP 4: Pasang URL ke File Website (app.js)
+//   1. Buka file `app.js` di project ini.
+//   2. Cari baris ke-489:
+//      const GOOGLE_SCRIPT_URL = "ISI_URL_GOOGLE_APPS_SCRIPT_DI_SINI";
+//   3. Ganti "ISI_URL_GOOGLE_APPS_SCRIPT_DI_SINI" dengan URL Web App yang Anda salin tadi.
+//      Contoh:
+//      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx123456789.../exec";
+//   4. Simpan file `app.js`. Selesai! 🎉

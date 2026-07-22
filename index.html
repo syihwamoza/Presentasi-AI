@@ -601,8 +601,29 @@
                     <p>Yuk jawab pertanyaan kuis di bawah untuk mengetes sejauh mana kalian memahami materi sosialisasi hari ini!</p>
                 </div>
                 <div class="quiz-wrapper">
+                    <!-- Form Identitas Peserta -->
+                    <div class="glass-card quiz-identity-panel" id="quiz-identity-panel">
+                        <div style="text-align: center; margin-bottom: 1.2rem;">
+                            <h3 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 0.4rem;">Identitas Peserta Kuis 📝</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">Isi nama &amp; kelas sebelum memulai kuis agar nilaimu tersimpan ke Google Sheets.</p>
+                        </div>
+                        <form id="quiz-identity-form" onsubmit="startQuizWithIdentity(event)">
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="quiz-user-name" style="display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 0.4rem; color: var(--text-dark); text-align: left;">Nama Lengkap</label>
+                                <input type="text" id="quiz-user-name" class="form-control" placeholder="Contoh: Ahmad Rizky" required style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; border: 1.5px solid rgba(12,119,173,0.25); background: rgba(255,255,255,0.9); font-size: 0.95rem; outline: none;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label for="quiz-user-class" style="display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 0.4rem; color: var(--text-dark); text-align: left;">Kelas / Instansi</label>
+                                <input type="text" id="quiz-user-class" class="form-control" placeholder="Contoh: X IPA 1 / SMA M 9" required style="width: 100%; padding: 0.75rem 1rem; border-radius: 10px; border: 1.5px solid rgba(12,119,173,0.25); background: rgba(255,255,255,0.9); font-size: 0.95rem; outline: none;">
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem 1.5rem; font-size: 1rem;">
+                                Mulai Kuis 🚀
+                            </button>
+                        </form>
+                    </div>
+
                     <!-- Progress Bar -->
-                    <div class="quiz-progress">
+                    <div class="quiz-progress" id="quiz-progress" style="display: none;">
                         <span id="quiz-progress-text">Pertanyaan 1 dari 4</span>
                         <div class="quiz-progress-bar">
                             <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
@@ -610,7 +631,7 @@
                     </div>
 
                     <!-- Card Kuis -->
-                    <div class="glass-card quiz-card" id="quiz-card">
+                    <div class="glass-card quiz-card" id="quiz-card" style="display: none;">
                         <div class="quiz-question-container">
                             <h3 id="quiz-question">Loading Pertanyaan...</h3>
                             <div class="quiz-options" id="quiz-options">
@@ -620,13 +641,17 @@
                     </div>
 
                     <!-- Hasil Skor -->
-                    <div class="glass-card quiz-result-panel" id="quiz-result-panel">
+                    <div class="glass-card quiz-result-panel" id="quiz-result-panel" style="display: none;">
                         <h2 class="text-gradient-seafoam">Kuis Selesai! 🎉</h2>
                         <div class="quiz-result-score-circle">
                             <span class="quiz-score-val" id="quiz-score-val">0</span>
                             <span class="quiz-score-lbl">Nilai Akhir</span>
                         </div>
                         <p class="quiz-result-feedback" id="quiz-result-feedback">Feedback skor...</p>
+                        
+                        <!-- Status Pengiriman ke Google Sheets -->
+                        <div id="quiz-submit-status" class="quiz-status-box" style="margin: 0.5rem 0; width: 100%;"></div>
+
                         <button class="btn btn-primary" onclick="restartQuiz()">
                             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
                             Ulangi Kuis
