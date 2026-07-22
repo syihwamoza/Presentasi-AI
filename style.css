@@ -1494,71 +1494,101 @@ section.slide:nth-child(even) {
   transform: scale(1.4) rotate(8deg);
 }
 
-/* THE BIG CUTE BOARD */
+/* THE REALISTIC CUTE BULLETIN BOARD (PAPAN PENGUMUMAN DIGITAL) */
 .wall-of-joy-big-board {
-  background: linear-gradient(135deg, #0c77ad 0%, #1597bb 50%, #084e72 100%);
+  background: #f5ebe0;
+  background-image: radial-gradient(#d5bdaf 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
   border-radius: 24px;
   padding: 1.6rem 1.8rem;
-  box-shadow: 0 15px 35px rgba(12, 119, 173, 0.22), inset 0 2px 4px rgba(255, 255, 255, 0.25);
-  border: 4px solid #ffffff;
-  min-height: 480px;
+  box-shadow: inset 0 0 25px rgba(11, 50, 66, 0.12), 0 15px 35px rgba(11, 50, 66, 0.12);
+  border: 8px solid #0c77ad;
+  min-height: 490px;
+  position: relative;
 }
 
 .board-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.8rem;
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1.2rem;
+  background: #0c77ad;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(12, 119, 173, 0.25);
 }
 
 .board-badge {
-  background: rgba(255, 255, 255, 0.95);
-  color: #0c77ad;
+  color: #ffffff;
   font-weight: 800;
-  font-size: 0.88rem;
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.2px;
 }
 
 .board-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.2rem;
-  max-height: 500px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-height: 520px;
   overflow-y: auto;
-  padding-right: 0.4rem;
+  padding: 0.8rem 0.5rem 1rem 0.5rem;
 }
 
-/* Cute Pastel Note Cards */
+/* Cute Pinned Sticky Note Cards */
 .wall-card-item {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 1.2rem;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  padding: 1.3rem 1.2rem 1rem 1.2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.06);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  border-top: 5px solid #0c77ad;
+  border-top: 6px solid #0c77ad;
   animation: pop-in 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.wall-card-item:nth-child(2n) {
-  border-top-color: #ffb703;
+/* Pin 📌 pada bagian atas setiap sticky note */
+.wall-card-item::before {
+  content: "📌";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.4rem;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.2));
+  z-index: 5;
 }
 
-.wall-card-item:nth-child(3n) {
-  border-top-color: #2e7d32;
+/* Warna Pastel Sticky Note & Kemiringan Alami */
+.wall-card-item:nth-child(4n+1) {
+  background: #fffde7; /* Kuning pastel */
+  border-top-color: #f59e0b;
+  transform: rotate(-1.8deg);
 }
 
-.wall-card-item:nth-child(4n) {
-  border-top-color: #e65100;
+.wall-card-item:nth-child(4n+2) {
+  background: #f0f9ff; /* Biru pastel */
+  border-top-color: #0284c7;
+  transform: rotate(1.4deg);
+}
+
+.wall-card-item:nth-child(4n+3) {
+  background: #f0fdf4; /* Hijau pastel */
+  border-top-color: #16a34a;
+  transform: rotate(-1.5deg);
+}
+
+.wall-card-item:nth-child(4n+0) {
+  background: #fdf2f8; /* Pink pastel */
+  border-top-color: #db2777;
+  transform: rotate(1.8deg);
 }
 
 .wall-card-item:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+  transform: translateY(-8px) rotate(0deg) scale(1.03) !important;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+  z-index: 10;
 }
 
 @keyframes pop-in {
