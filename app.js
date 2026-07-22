@@ -29,31 +29,42 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================================================
-   0. SPA PAGE ROUTER
+   0. TOP NAVIGATION BAR & SPA PAGE ROUTER
    ========================================================================== */
-window.toggleSidebar = function() {
-    const sidebar = document.querySelector("header");
-    const overlay = document.getElementById("sidebar-overlay");
-    if (sidebar && overlay) {
-        sidebar.classList.toggle("open");
-        overlay.classList.toggle("active");
-    }
+window.toggleTopMenu = function() {
+    const menu = document.getElementById("top-nav-menu");
+    if (menu) menu.classList.toggle("open");
 };
+
+window.closeTopMenu = function() {
+    const menu = document.getElementById("top-nav-menu");
+    if (menu) menu.classList.remove("open");
+};
+
+window.toggleProkerDropdown = function(event) {
+    if (event) event.stopPropagation();
+    const dropdown = document.getElementById("top-proker-dropdown");
+    if (dropdown) dropdown.classList.toggle("open");
+};
+
+window.closeProkerDropdown = function() {
+    const dropdown = document.getElementById("top-proker-dropdown");
+    if (dropdown) dropdown.classList.remove("open");
+};
+
+// Close dropdown on outside click
+document.addEventListener("click", (e) => {
+    const dropdown = document.getElementById("top-proker-dropdown");
+    if (dropdown && !dropdown.contains(e.target)) {
+        dropdown.classList.remove("open");
+    }
+});
 
 window.switchPage = function(pageId) {
     const pages = document.querySelectorAll(".page-view");
-    const navLinks = document.querySelectorAll(".nav-link");
-    const submenuAi = document.getElementById("submenu-ai");
+    const topNavLinks = document.querySelectorAll(".top-nav-link");
+    const dropdownItems = document.querySelectorAll(".top-dropdown-menu .dropdown-item");
     const lateralDots = document.getElementById("lateral-slide-dots");
-
-    const targetPage = document.getElementById("page-" + pageId);
-    const isAlreadyActive = targetPage && targetPage.classList.contains("active");
-
-    if (pageId === "proker-ai" && isAlreadyActive) {
-        // Toggle submenu visibility if clicking again
-        submenuAi.classList.toggle("active");
-        return;
-    }
 
     pages.forEach(page => {
         if (page.id === "page-" + pageId) {
@@ -63,7 +74,8 @@ window.switchPage = function(pageId) {
         }
     });
 
-    navLinks.forEach(link => {
+    // Update active top nav links
+    topNavLinks.forEach(link => {
         if (link.getAttribute("data-page") === pageId) {
             link.classList.add("active");
         } else {
@@ -71,26 +83,26 @@ window.switchPage = function(pageId) {
         }
     });
 
-    // Toggle submenu AI & lateral dots
+    // Highlight Proker dropdown toggle if a proker page is active
+    const prokerDropdownToggle = document.querySelector(".top-dropdown-toggle");
+    if (prokerDropdownToggle) {
+        if (pageId.startsWith("proker-")) {
+            prokerDropdownToggle.classList.add("active");
+        } else {
+            prokerDropdownToggle.classList.remove("active");
+        }
+    }
+
+    // Toggle lateral dots for proker-ai
     if (pageId === "proker-ai") {
-        submenuAi.classList.add("active");
-        lateralDots.style.display = "flex";
+        if (lateralDots) lateralDots.style.display = "flex";
         window.scrollToSlide(0);
     } else {
-        submenuAi.classList.remove("active");
-        lateralDots.style.display = "none";
+        if (lateralDots) lateralDots.style.display = "none";
     }
 
-    // Close sidebar drawer on mobile if open
-    const sidebar = document.querySelector("header");
-    const overlay = document.getElementById("sidebar-overlay");
-    if (sidebar && sidebar.classList.contains("open")) {
-        sidebar.classList.remove("open");
-        overlay.classList.remove("active");
-    }
-
-    // Scroll window to top
-    window.scrollTo({ top: 0, behavior: "instant" });
+    // Scroll to top of window
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 window.scrollToElement = function(elementId) {
@@ -235,7 +247,7 @@ function initPromptPlayground() {
         },
         "benar-1": {
             user: "Anda adalah seorang pengajar AI (<strong>Context</strong>). Anda diminta untuk membuatkan saya artikel edukasi tentang teknik prompting dengan maksimal 1500 kata untuk sebuah acara seminar (<strong>Task</strong>). Gunakan bahasa yang mudah dipahami orang awam (<strong>Instruction</strong>). Hasilkan 3 paragraf dari artikel tersebut (<strong>Format</strong>).",
-            ai: "Halo semuanya! Selamat datang di seminar hari ini. Sebagai pengajar AI Anda, saya ingin mengenalkan sebuah konsep penting: teknik prompting. Prompting secara sederhana adalah cara kita berbicara dan memberikan perintah kepada sistem AI agar ia mengerti apa yang kita inginkan. Bagaikan mengajari asisten baru, cara kita memberikan instruksi menentukan seberapa bagus hasil pekerjaannya.<br><br>Kunci utama dari teknik prompting yang efektif terletak pada kejelasan dan kedetailan perintah. Banyak orang mengeluh jawaban AI kurang memuaskan, padahal masalahnya terletak pada perintahnya yang terlalu singkat dan ambigu. Dengan memberikan konteks peran dan format keluaran yang jelas kepada AI, kita bisa menghindari jawaban yang melantur atau salah informasi.<br><br>Untuk mempermudah latihan, kita bisa menggunakan rumus jitu bernama Metode CTIF: tentukan perannya (Context), jelaskan tugas utamanya (Task), batasi aturan penyampaiannya (Instruction), dan tentukan bentuk outputnya (Format). Dengan mempraktikkan metode ini, Anda akan terkejut melihat betapa cerdas dan membantunya AI dalam mempermudah pembelajaran dan pekerjaan Anda sehari-hari! 🎓🚀"
+            ai: "Halo semuanya! Selamat datang di seminar hari ini. Sebagai pengajar AI Anda, saya ingin mengenalkan sebuah konsep penting: teknik prompting. Prompting secara sederhana adalah cara kita berbicara dan memberikan perintah kepada sistem AI agar ia mengerti apa yang kita inginkan. Bagaikan mengajari asisten baru, cara kita memberikan instruksi menentukan seberapa bagus hasil pekerjaannya.<br><br>Kunci utama dari teknik prompting yang efektif terletak pada kejelasan dan kedetailan perintah. Banyak orang mengeluh jawaban AI kurang memuaskan, padahal masalahnya terletak pada perintahnya yang terlalu singkat dan ambigu. Dengan memberikan konteks peran dan format keluaran yang jelas kepada AI, kita bisa menghindari jawaban yang melantur atau salah informasi.<br><br>Untuk mempermudah latihan, kita bisa menggunakan rumus jitu bernama Metode CTIF: tentukan perannya (Context), jelaskan tugas utamanya (Task), batasi aturan penyampaiannya (Instruction), dan tentukan bentuk outputnya (Format). Dengan mempraktikkan metode ini, Anda akan terkejut melihat betapa cerdas dan membantunya AI dalam mempermudah pembelajaran dan pekerjaan Anda sehari-hari!"
         },
         "salah-2": {
             user: "buatkan saya poster bahaya membuang sampah",
@@ -619,13 +631,13 @@ function showQuizResults() {
 
     let feedback = "";
     if (finalScore === 100) {
-        feedback = "Luar biasa! 🥳 Kamu mendapatkan skor sempurna! Kamu adalah calon Ahli AI masa depan dari Lamongan! 🚀🌟";
+        feedback = "Luar biasa! Kamu mendapatkan skor sempurna! Pemahamanmu tentang etika & penggunaan AI sudah sangat matang.";
     } else if (finalScore >= 75) {
-        feedback = "Keren sekali! 👍 Pemahamanmu tentang kecerdasan buatan sudah sangat mantap. Teruskan belajar!";
+        feedback = "Keren sekali! Pemahamanmu tentang kecerdasan buatan sudah sangat mantap. Teruskan belajar!";
     } else if (finalScore >= 50) {
-        feedback = "Cukup baik! 🙂 Kamu sudah memahami dasar-dasar AI dengan oke. Yuk pelajari lebih lanjut!";
+        feedback = "Cukup baik! Kamu sudah memahami dasar-dasar AI dengan oke. Yuk pelajari lebih lanjut!";
     } else {
-        feedback = "Tidak apa-apa! Kuis ini adalah proses belajar yang bagus. Ayo ulangi kuisnya dan coba lagi! 💪";
+        feedback = "Tidak apa-apa! Kuis ini adalah proses belajar yang bagus untuk mengasah wawasan digitalmu.";
     }
     
     document.getElementById("quiz-result-feedback").innerHTML = feedback;
@@ -1141,23 +1153,23 @@ let selectedWallRating = 5;
 const initialWallMessages = [
     {
         author: "Bpk. Guru SMA M 9",
-        category: "Guru / Staf 👨‍🏫",
+        category: "Guru / Staf",
         rating: 5,
         message: "Terima kasih banyak adik-adik Mahasiswa KKN UMY atas sosialisasi AI yang sangat edukatif ini. Sangat membuka wawasan siswa-siswi kami dalam memanfaatkan teknologi secara positif!",
         time: "22/07/2026, 14.15"
     },
     {
         author: "Rizky (Siswa X IPA 1)",
-        category: "Siswa 🎓",
+        category: "Siswa",
         rating: 5,
         message: "Materi kuis dan rumus prompt CTIF-nya keren banget Kak! Jadi makin paham cara tanya AI yang bener buat bantu nugas sekolah.",
         time: "22/07/2026, 14.30"
     },
     {
         author: "Nabila (Siswa XI IPS)",
-        category: "Siswa 🎓",
+        category: "Siswa",
         rating: 5,
-        message: "Kakak-kakak KKN ramah banget dan penyampaian materinya asik, nggak ngebosenin. Sukses selalu untuk KKN Sahabat Sekolah UMY! 🚀",
+        message: "Kakak-kakak KKN ramah banget dan penyampaian materinya asik, nggak ngebosenin. Sukses selalu untuk KKN Sahabat Sekolah UMY!",
         time: "22/07/2026, 14.45"
     }
 ];
@@ -1206,7 +1218,7 @@ function renderWallMessages(messages) {
         card.innerHTML = `
             <div class="wall-card-header">
                 <span class="wall-card-author">${escapeHtml(msg.author)}</span>
-                <span class="wall-card-badge">${escapeHtml(msg.category || 'Siswa 🎓')}</span>
+                <span class="wall-card-badge">${escapeHtml(msg.category || 'Siswa')}</span>
             </div>
             <div class="wall-card-stars">${starsStr}</div>
             <div class="wall-card-text">${escapeHtml(msg.message)}</div>

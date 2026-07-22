@@ -176,47 +176,195 @@ h1, h2, h3, h4, h5, h6 {
 /* ==========================================================================
    NAVIGATION SIDEBAR / MOBILE TOPBAR
    ========================================================================== */
-header {
+/* TOP NAVIGATION BAR STYLES */
+.top-navbar {
   position: fixed;
   top: 0;
-  left: -285px; /* Tersembunyi secara default di semua layar */
-  width: 280px;
-  height: 100vh;
-  z-index: 1002;
-  background: var(--bg-light);
-  box-shadow: 4px 0 25px rgba(11, 50, 66, 0.15);
-  padding: 2.2rem 1.2rem;
-  overflow-y: auto;
-  transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border-right: 1px solid rgba(12, 119, 173, 0.08);
-}
-
-header.open {
-  left: 0; /* Meluncur masuk */
-}
-
-/* Minimalist scrollbar for sidebar */
-header::-webkit-scrollbar {
-  width: 4px;
-}
-header::-webkit-scrollbar-track {
-  background: transparent;
-}
-header::-webkit-scrollbar-thumb {
-  background: rgba(12, 119, 173, 0.1);
-  border-radius: 2px;
-}
-header::-webkit-scrollbar-thumb:hover {
-  background: rgba(12, 119, 173, 0.3);
-}
-
-.navbar {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
+  left: 0;
   width: 100%;
-  gap: 2.5rem;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(12, 119, 173, 0.12);
+  box-shadow: 0 4px 20px rgba(11, 50, 66, 0.05);
+}
+
+.top-navbar-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main {
+  padding-top: 72px; /* Prevent header overlap */
+  margin-left: 0 !important;
+}
+
+.top-nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.top-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.top-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.top-nav-link:hover,
+.top-nav-link.active {
+  color: var(--primary);
+  background: rgba(12, 119, 173, 0.08);
+}
+
+/* TOP DROPDOWN */
+.top-dropdown {
+  position: relative;
+}
+
+.dropdown-chevron {
+  transition: transform 0.25s ease;
+}
+
+.top-dropdown.open .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.top-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 250px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 0.6rem;
+  box-shadow: 0 12px 35px rgba(11, 50, 66, 0.15);
+  border: 1px solid rgba(12, 119, 173, 0.15);
+  display: none;
+  flex-direction: column;
+  gap: 0.3rem;
+  list-style: none;
+  z-index: 1010;
+  animation: pop-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.top-dropdown.open .top-dropdown-menu {
+  display: flex;
+}
+
+.top-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.top-dropdown-menu a:hover {
+  background: rgba(12, 119, 173, 0.1);
+  color: var(--primary);
+}
+
+.proker-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* INSTAGRAM BUTTON */
+.btn-instagram-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 20px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(220, 39, 67, 0.3);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.btn-instagram-top:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(220, 39, 67, 0.45);
+}
+
+/* MOBILE RESPONSIVE TOP NAV */
+@media (max-width: 992px) {
+  .hamburger-btn.mobile-only {
+    display: flex !important;
+  }
+
+  .top-nav-menu {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(12, 119, 173, 0.15);
+    padding: 1rem 1.5rem;
+    display: none;
+    box-shadow: 0 10px 30px rgba(11, 50, 66, 0.12);
+  }
+
+  .top-nav-menu.open {
+    display: block;
+  }
+
+  .top-nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .top-dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: rgba(12, 119, 173, 0.05);
+    margin-top: 0.5rem;
+  }
 }
 
 .logo-container {
@@ -1548,15 +1696,18 @@ section.slide:nth-child(even) {
   animation: pop-in 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Pin 📌 pada bagian atas setiap sticky note */
+/* Pin tombol 3D pada bagian atas setiap sticky note */
 .wall-card-item::before {
-  content: "📌";
+  content: "";
   position: absolute;
-  top: -15px;
+  top: -8px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.4rem;
-  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.2));
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #dc2743;
+  box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.35), 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 5;
 }
 
