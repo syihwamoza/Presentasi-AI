@@ -500,7 +500,7 @@ const quizQuestions = [
 // CONFIGURATION: URL GOOGLE APPS SCRIPT WEB APP
 // Tempelkan URL Web App Google Apps Script Anda di bawah ini
 // ==========================================================================
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzysfDasCel1z7SJuywUmH3RkfiGPvIMOWAR-GKbflN4NAm8C7aZFofDDKpgJJxOHBh/exec"; 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwck32st33prpKn-VW1xA2jsyShGPzvsMXw-7wYLE8tcvDFlOgVPolLlqyONH_TP4Yt/exec"; 
 
 let currentQuestionIndex = 0;
 let userScore = 0;
