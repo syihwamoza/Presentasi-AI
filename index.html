@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KKN Widya Segara Megilan (WIGARA) Brondong</title>
-    <link rel="stylesheet" href="style.css?v=centerhero">
+    <link rel="stylesheet" href="style.css?v=navorder">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
@@ -32,6 +32,12 @@
                     <li>
                         <a class="top-nav-link active" data-page="beranda" onclick="switchPage('beranda'); closeTopMenu();">
                             <span>Beranda</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="top-nav-link" href="#profil-tim" onclick="switchPage('beranda'); setTimeout(function(){ document.getElementById('profil-tim').scrollIntoView({behavior: 'smooth'}); }, 150); closeTopMenu();">
+                            <span>Siapa Kami?</span>
                         </a>
                     </li>
 
@@ -75,12 +81,6 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a class="top-nav-link" href="#profil-tim" onclick="switchPage('beranda'); closeTopMenu();">
-                            <span>Siapa Kami?</span>
-                        </a>
-                    </li>
-
                     <!-- Instagram Link Button -->
                     <li class="ig-menu-item">
                         <a href="https://www.instagram.com/widyasegaramegilan/" target="_blank" rel="noopener noreferrer" class="btn btn-instagram-top">
@@ -112,7 +112,7 @@
         <!-- PAGE 1: BERANDA PORTAL UTAMA -->
         <div id="page-beranda" class="page-view active">
             <!-- HERO SECTION (RATA TENGAH DENGAN BACKGROUND FOTO BERSAMA) -->
-            <section class="hero-portal" style="padding: 70px 2rem 65px 2rem; position: relative; background: linear-gradient(180deg, rgba(248, 250, 252, 0.88) 0%, rgba(224, 242, 254, 0.92) 100%), url('foto-tim/foto_bersama.png') center/cover no-repeat; border-radius: 32px; margin: 1.5rem 0 2.5rem 0; overflow: hidden; box-shadow: 0 16px 45px rgba(12, 119, 173, 0.14); border: 3px solid #ffffff;">
+            <section class="hero-portal" style="padding: 75px 2rem; position: relative; background: linear-gradient(180deg, rgba(248, 250, 252, 0.92) 0%, rgba(224, 242, 254, 0.94) 100%), url('foto-tim/hero_bg.png') center/cover no-repeat; border-radius: 32px; margin: 1.5rem 0 2.5rem 0; overflow: hidden; box-shadow: 0 16px 45px rgba(12, 119, 173, 0.14); border: 3px solid #ffffff;">
                 <div class="container" style="max-width: 860px; text-align: center; margin: 0 auto; position: relative; z-index: 5;">
                     <!-- BIG BOLD TITLE (RATA TENGAH) -->
                     <h1 class="text-gradient-seafoam" style="font-size: 3.2rem; line-height: 1.15; font-weight: 800; margin-bottom: 1.2rem; text-align: center;">
