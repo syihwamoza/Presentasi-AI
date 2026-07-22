@@ -1132,3 +1132,154 @@ window.switchScholarshipTab = function(tabId) {
     const activeContent = document.getElementById("tab-content-" + tabId);
     if (activeContent) activeContent.classList.add("active");
 };
+
+/* ==========================================================================
+   TEMBOK KESAN & PESAN DIGITAL (DIGITAL WALL OF JOY)
+   ========================================================================== */
+let selectedWallRating = 5;
+
+const initialWallMessages = [
+    {
+        author: "Bpk. Guru SMA M 9",
+        category: "Guru / Staf 👨‍🏫",
+        rating: 5,
+        message: "Terima kasih banyak adik-adik Mahasiswa KKN UMY atas sosialisasi AI yang sangat edukatif ini. Sangat membuka wawasan siswa-siswi kami dalam memanfaatkan teknologi secara positif!",
+        time: "22/07/2026, 14.15"
+    },
+    {
+        author: "Rizky (Siswa X IPA 1)",
+        category: "Siswa 🎓",
+        rating: 5,
+        message: "Materi kuis dan rumus prompt CTIF-nya keren banget Kak! Jadi makin paham cara tanya AI yang bener buat bantu nugas sekolah.",
+        time: "22/07/2026, 14.30"
+    },
+    {
+        author: "Nabila (Siswa XI IPS)",
+        category: "Siswa 🎓",
+        rating: 5,
+        message: "Kakak-kakak KKN ramah banget dan penyampaian materinya asik, nggak ngebosenin. Sukses selalu untuk KKN Sahabat Sekolah UMY! 🚀",
+        time: "22/07/2026, 14.45"
+    }
+];
+
+window.setWallRating = function(val) {
+    selectedWallRating = val;
+    const starItems = document.querySelectorAll("#star-rating-selector .star-item");
+    starItems.forEach((star, idx) => {
+        if (idx < val) {
+            star.classList.add("active");
+        } else {
+            star.classList.remove("active");
+        }
+    });
+};
+
+function initWallOfJoy() {
+    const wallList = document.getElementById("wall-cards-list");
+    if (!wallList) return;
+
+    let saved = [];
+    try {
+        const raw = localStorage.getItem("kkn_wall_messages_v1");
+        if (raw) saved = JSON.parse(raw);
+    } catch(e) {
+        console.error(e);
+    }
+
+    const allMessages = [...saved, ...initialWallMessages];
+    renderWallMessages(allMessages);
+}
+
+function renderWallMessages(messages) {
+    const wallList = document.getElementById("wall-cards-list");
+    if (!wallList) return;
+
+    wallList.innerHTML = "";
+
+    messages.forEach(msg => {
+        const starsStr = "★".repeat(msg.rating || 5) + "☆".repeat(5 - (msg.rating || 5));
+        const card = document.createElement("div");
+        card.className = "wall-card-item";
+        card.innerHTML = `
+            <div class="wall-card-header">
+                <span class="wall-card-author">${escapeHtml(msg.author)}</span>
+                <span class="wall-card-badge">${escapeHtml(msg.category || 'Siswa 🎓')}</span>
+            </div>
+            <div class="wall-card-stars">${starsStr}</div>
+            <div class="wall-card-text">${escapeHtml(msg.message)}</div>
+            <div class="wall-card-time">${msg.time}</div>
+        `;
+        wallList.appendChild(card);
+    });
+}
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+window.submitWallMessage = function(event) {
+    if (event) event.preventDefault();
+
+    const author = document.getElementById("wall-author").value.trim();
+    const category = document.getElementById("wall-category").value;
+    const message = document.getElementById("wall-message").value.trim();
+    const statusMsg = document.getElementById("wall-status-msg");
+
+    if (!author || !message) return;
+
+    const waktuStr = new Date().toLocaleString("id-ID");
+
+    const newMsg = {
+        author: author,
+        category: category,
+        rating: selectedWallRating,
+        message: message,
+        time: waktuStr
+    };
+
+    // Save to local storage
+    let saved = [];
+    try {
+        const raw = localStorage.getItem("kkn_wall_messages_v1");
+        if (raw) saved = JSON.parse(raw);
+    } catch(e) {}
+
+    saved.unshift(newMsg);
+    localStorage.setItem("kkn_wall_messages_v1", JSON.stringify(saved));
+
+    // Render immediately at top
+    initWallOfJoy();
+
+    // Reset form
+    document.getElementById("wall-author").value = "";
+    document.getElementById("wall-message").value = "";
+    setWallRating(5);
+
+    if (statusMsg) {
+        statusMsg.style.display = "block";
+        statusMsg.style.color = "#2e7d32";
+        statusMsg.innerHTML = "✅ Terima kasih! Kesan & pesan Anda berhasil dikirim.";
+        setTimeout(() => { statusMsg.style.display = "none"; }, 4000);
+    }
+
+    // Kirim ke Google Sheets Backend
+    if (typeof GOOGLE_SCRIPT_URL !== 'undefined' && GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("ISI_URL")) {
+        const formData = new FormData();
+        formData.append("type", "kesan_pesan");
+        formData.append("nama", author);
+        formData.append("kelas", category);
+        formData.append("rating", selectedWallRating + " Bintang ⭐");
+        formData.append("pesan", message);
+        formData.append("waktu", waktuStr);
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            body: formData
+        }).catch(err => console.warn("Wall post response:", err));
+    }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    initWallOfJoy();
+});
