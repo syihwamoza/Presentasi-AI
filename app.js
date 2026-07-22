@@ -1307,6 +1307,86 @@ window.submitWallMessage = function(event) {
     }
 };
 
+/* ==========================================================================
+   INTERACTIVE 3D POP-OUT TEAM MODAL & PHOTO MANAGER
+   ========================================================================== */
+let activeTeamMemberId = null;
+
+window.openTeamModal = function(card) {
+    activeTeamMemberId = card.getAttribute("data-member-id") || "1";
+    const name = card.getAttribute("data-name") || "Anggota Tim KKN";
+    const role = card.getAttribute("data-role") || "Anggota Tim";
+    const prodi = card.getAttribute("data-prodi") || "Universitas Muhammadiyah Yogyakarta";
+    const quote = card.getAttribute("data-quote") || "Mengabdi untuk menginspirasi siswa melalui penguasaan teknologi digital.";
+    
+    const modal = document.getElementById("team-modal");
+    if (!modal) return;
+
+    document.getElementById("modal-team-name").textContent = name;
+    document.getElementById("modal-team-role").textContent = role;
+    document.getElementById("modal-team-prodi").textContent = prodi;
+    document.getElementById("modal-team-quote").textContent = `"${quote}"`;
+
+    // Set modal image src from card's image
+    const cardImg = document.getElementById("team-img-" + activeTeamMemberId);
+    const modalImg = document.getElementById("modal-team-img");
+    if (cardImg && modalImg) {
+        modalImg.src = cardImg.src;
+    }
+
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+};
+
+window.closeTeamModal = function() {
+    const modal = document.getElementById("team-modal");
+    if (modal) modal.classList.remove("active");
+    document.body.style.overflow = "";
+};
+
+window.triggerPhotoUpload = function() {
+    const input = document.getElementById("team-photo-file-input");
+    if (input) input.click();
+};
+
+window.handleTeamPhotoUpload = function(event) {
+    const file = event.target.files[0];
+    if (!file || !activeTeamMemberId) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const base64Data = e.target.result;
+        
+        // Update live card image
+        const cardImg = document.getElementById("team-img-" + activeTeamMemberId);
+        if (cardImg) cardImg.src = base64Data;
+        
+        // Update modal image
+        const modalImg = document.getElementById("modal-team-img");
+        if (modalImg) modalImg.src = base64Data;
+
+        // Save photo in localStorage so it stays permanently on this device
+        try {
+            localStorage.setItem("kkn_team_photo_" + activeTeamMemberId, base64Data);
+        } catch (err) {
+            console.warn("Storage full or disabled:", err);
+        }
+    };
+    reader.readAsDataURL(file);
+};
+
+window.loadSavedTeamPhotos = function() {
+    const members = ["dpl", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+    members.forEach(id => {
+        const savedPhoto = localStorage.getItem("kkn_team_photo_" + id);
+        if (savedPhoto) {
+            const cardImg = document.getElementById("team-img-" + id);
+            if (cardImg) cardImg.src = savedPhoto;
+        }
+    });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     initWallOfJoy();
+    loadSavedTeamPhotos();
 });

@@ -1,0 +1,24 @@
+========================================================================
+PETUNJUK PENYIMPANAN FOTO TIM KKN (EFEC 3D TIMBUL & OMBAK)
+========================================================================
+
+Silakan masukkan file foto anggota tim KKN Anda ke dalam folder "foto-tim" ini 
+dengan penamaan file sebagai berikut:
+
+1. Foto DPL                 -> dpl.png (atau dpl.jpg)
+2. Foto Anggota 1 (Ketua)   -> anggota1.png (atau anggota1.jpg)
+3. Foto Anggota 2           -> anggota2.png
+4. Foto Anggota 3           -> anggota3.png
+5. Foto Anggota 4           -> anggota4.png
+6. Foto Anggota 5           -> anggota5.png
+7. Foto Anggota 6           -> anggota6.png
+8. Foto Anggota 7           -> anggota7.png
+9. Foto Anggota 8           -> anggota8.png
+10. Foto Anggota 9          -> anggota9.png
+11. Foto Anggota 10         -> anggota10.png
+12. Foto Anggota 11         -> anggota11.png
+13. Foto Anggota 12         -> anggota12.png
+
+TIPS UNTUK EFEK TIMBUL MAXIMAL:
+- Gunakan foto berformat PNG transparan (tanpa background) atau foto setengah badan.
+- Jika foto berupa JPG biasa, sistem tetap akan menampilkan foto di dalam lingkaran berombak dengan rapi!
