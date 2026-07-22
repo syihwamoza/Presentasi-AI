@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KKN Widya Segara Megilan (WIGARA) Brondong</title>
-    <link rel="stylesheet" href="style.css?v=6proker">
+    <link rel="stylesheet" href="style.css?v=carousel">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
@@ -161,9 +161,20 @@
             <!-- PROKER GRID SECTION -->
             <section style="padding: 20px 0;">
                 <div class="container">
-                    <div class="section-header">
+                    <div class="section-header" style="text-align: center;">
                         <h2 class="text-gradient-seafoam">Program Kerja Unggulan Kami</h2>
-                        <p>Berikut adalah 4 pilar pengabdian KKN Sahabat Sekolah UMY untuk mencerdaskan dan membentuk karakter tangguh bagi siswa-siswi SMA Muhammadiyah 9 Brondong.</p>
+                        <p>Berikut adalah 6 pilar pengabdian KKN Sahabat Sekolah UMY untuk mencerdaskan dan membentuk karakter tangguh bagi siswa-siswi SMA Muhammadiyah 9 Brondong.</p>
+
+                        <!-- Scroll Navigation Controls -->
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-top: 1rem;">
+                            <button class="proker-scroll-btn" onclick="scrollProkerGrid(-330)" aria-label="Scroll Kiri" title="Geser ke Kiri">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                            <span style="font-size: 0.82rem; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 0.4rem 1rem; border-radius: 20px;">👈 Geser / Scroll ke Kanan-Kiri ➔</span>
+                            <button class="proker-scroll-btn" onclick="scrollProkerGrid(330)" aria-label="Scroll Kanan" title="Geser ke Kanan">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
                     </div>
                     
                     <div class="proker-grid">

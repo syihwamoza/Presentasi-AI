@@ -2489,30 +2489,78 @@ section.slide:nth-child(even) {
 }
 
 
+/* HORIZONTAL SCROLL CAROUSEL FOR PROGRAM KERJA ON BERANDA */
+.proker-grid-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .proker-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   gap: 1.5rem;
-  margin-bottom: 3.5rem;
+  padding: 0.6rem 0.3rem 1.6rem 0.3rem;
+  margin-bottom: 2.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Sleek Scrollbar */
+.proker-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.proker-grid::-webkit-scrollbar-track {
+  background: rgba(12, 119, 173, 0.08);
+  border-radius: 10px;
+}
+
+.proker-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #0c77ad 0%, #00b4d8 100%);
+  border-radius: 10px;
 }
 
 .proker-card {
+  flex: 0 0 310px;
+  max-width: 310px;
+  scroll-snap-align: start;
   background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: 16px;
+  border: 1.5px solid var(--border-light);
+  border-radius: 20px;
   padding: 1.8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 6px 20px rgba(11, 50, 66, 0.02);
+  box-shadow: 0 8px 25px rgba(11, 50, 66, 0.04);
   transition: var(--transition-smooth);
-  height: 100%;
 }
 
 .proker-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: 0 10px 25px rgba(12, 119, 173, 0.08);
-  transform: translateY(-4px);
+  border-color: #00b4d8;
+  box-shadow: 0 12px 30px rgba(12, 119, 173, 0.15);
+  transform: translateY(-5px);
+}
+
+.proker-scroll-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--primary);
+  background: #ffffff;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.proker-scroll-btn:hover {
+  background: var(--primary);
+  color: #ffffff;
+  transform: scale(1.1);
 }
 
 .proker-card-body {

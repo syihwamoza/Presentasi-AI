@@ -1566,6 +1566,13 @@ window.loadSavedGroupPhoto = function() {
     }
 };
 
+window.scrollProkerGrid = function(offset) {
+    const grid = document.querySelector(".proker-grid");
+    if (grid) {
+        grid.scrollBy({ left: offset, behavior: "smooth" });
+    }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     initWallOfJoy();
     loadSavedTeamPhotos();
