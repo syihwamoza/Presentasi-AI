@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700;800&family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 /* ==========================================================================
    DESIGN TOKENS & VARIABLES (KKN Lamongan 2026 - Clean Slide Deck Theme)
@@ -1647,14 +1647,15 @@ section.slide:nth-child(even) {
 }
 
 /* THE REALISTIC CUTE BULLETIN BOARD (PAPAN PENGUMUMAN DIGITAL) */
+/* THE REALISTIC WOODEN BULLETIN BOARD (PAPAN KAYU DIGITIAL) */
 .wall-of-joy-big-board {
-  background: #f5ebe0;
-  background-image: radial-gradient(#d5bdaf 1.5px, transparent 1.5px);
-  background-size: 20px 20px;
-  border-radius: 24px;
+  background: #f4ece1;
+  background-image: radial-gradient(#d4c1ad 2px, transparent 2px);
+  background-size: 22px 22px;
+  border-radius: 28px;
   padding: 1.6rem 1.8rem;
-  box-shadow: inset 0 0 25px rgba(11, 50, 66, 0.12), 0 15px 35px rgba(11, 50, 66, 0.12);
-  border: 8px solid #0c77ad;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2), 0 15px 40px rgba(0, 0, 0, 0.25);
+  border: 14px solid #5c3d2e; /* Bingkai Kayu Cokelat Warm */
   min-height: 490px;
   position: relative;
 }
@@ -1664,41 +1665,41 @@ section.slide:nth-child(even) {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  padding: 0.65rem 1.4rem;
-  background: linear-gradient(135deg, #0c77ad 0%, #1597bb 100%);
-  border-radius: 50px; /* Bentuk Kapsul Utuh */
-  box-shadow: 0 8px 22px rgba(12, 119, 173, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.3);
-  border: 2.5px solid #ffffff;
-  transform: rotate(-0.5deg); /* Efek stiker sedikit miring estetik */
+  padding: 0.3rem 0.6rem;
+  background: transparent; /* Hilangkan Kotak Biru Padat */
+  box-shadow: none;
+  border: none;
   position: relative;
 }
 
 .board-badge {
-  color: #ffffff;
-  font-family: var(--font-title);
-  font-weight: 800;
-  font-size: 1.05rem;
+  color: #4a2e23;
+  font-family: 'Caveat', cursive, sans-serif; /* Font Gaya Tulisan Tangan / Kapur */
+  font-weight: 700;
+  font-size: 2.8rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  letter-spacing: 0.5px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.12);
+  transform: rotate(-1.5deg); /* Kemiringan Alami Tulisan Kapur */
 }
 
 .board-count-badge {
-  font-size: 0.82rem;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.22);
-  padding: 0.35rem 0.95rem;
+  font-size: 0.85rem;
+  color: #5c3d2e;
+  background: #ffffff;
+  padding: 0.4rem 1.1rem;
   border-radius: 20px;
-  backdrop-filter: blur(4px);
   font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1.5px solid #d5c3b1;
 }
 
 .board-count-badge span {
   font-weight: 800;
   font-size: 0.95rem;
+  color: var(--primary);
 }
 
 .board-grid {
