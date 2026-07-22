@@ -954,7 +954,7 @@ section.slide:nth-child(even) {
   border-radius: 20px;
 }
 
-/* CLICKABLE AREA OVER EACH PERSON IN GROUP PHOTO */
+/* CLICKABLE AREA OVER EACH PERSON IN GROUP PHOTO (WHITE STYLES) */
 .person-clickable-area {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -965,14 +965,14 @@ section.slide:nth-child(even) {
   align-items: center;
   justify-content: center;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  background: rgba(12, 119, 173, 0.08);
-  border: 2px dashed rgba(12, 119, 173, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px dashed rgba(255, 255, 255, 0.75);
 }
 
 .person-clickable-area:hover {
-  background: rgba(12, 119, 173, 0.35);
-  border: 2.5px solid #00b4d8;
-  box-shadow: 0 0 25px rgba(0, 180, 216, 0.7);
+  background: rgba(255, 255, 255, 0.45);
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.95);
   transform: translate(-50%, -50%) scale(1.18);
 }
 
@@ -982,7 +982,7 @@ section.slide:nth-child(even) {
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  border: 2px solid rgba(0, 180, 216, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.75);
   animation: personPulse 2s infinite;
 }
 
@@ -991,45 +991,8 @@ section.slide:nth-child(even) {
   100% { transform: scale(1.35); opacity: 0; }
 }
 
-/* Hover Tooltip */
 .person-tooltip {
-  position: absolute;
-  bottom: 115%;
-  left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  background: rgba(11, 50, 66, 0.94);
-  color: #ffffff;
-  padding: 0.5rem 0.9rem;
-  border-radius: 14px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-}
-
-.person-tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 6px;
-  border-style: solid;
-  border-color: rgba(11, 50, 66, 0.94) transparent transparent transparent;
-}
-
-.person-clickable-area:hover .person-tooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  display: none !important;
 }
 
 /* PROFILE IDENTITY POPUP MODAL */
