@@ -1198,8 +1198,20 @@ function initWallOfJoy() {
         console.error(e);
     }
 
-    const allMessages = [...saved, ...initialWallMessages];
-    renderWallMessages(allMessages);
+    const localMessages = [...saved, ...initialWallMessages];
+    renderWallMessages(localMessages);
+
+    // Ambil data pesan live dari Google Sheets agar tersinkronisasi antar perangkat (HP & Laptop)
+    if (typeof GOOGLE_SCRIPT_URL !== 'undefined' && GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("ISI_URL")) {
+        fetch(GOOGLE_SCRIPT_URL)
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.messages && data.messages.length > 0) {
+                    renderWallMessages(data.messages);
+                }
+            })
+            .catch(err => console.warn("Fetch live wall err:", err));
+    }
 }
 
 function renderWallMessages(messages) {

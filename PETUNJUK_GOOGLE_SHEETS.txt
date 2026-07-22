@@ -65,3 +65,40 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
+
+// -------------------------------------------------------------
+// C. AMBIL DATA PESAN LIVE (AGAR LAYAR HP & LAPTOP TERSINKRON)
+// -------------------------------------------------------------
+function doGet(e) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName("Kesan & Pesan");
+    if (!sheet) {
+      return ContentService.createTextOutput(JSON.stringify({ messages: [] }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    var data = sheet.getDataRange().getValues();
+    var messages = [];
+    
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      if (row[1]) {
+        var ratingNum = parseInt(row[3]) || 5;
+        messages.push({
+          time: row[0],
+          author: row[1],
+          category: row[2],
+          rating: ratingNum,
+          message: row[4]
+        });
+      }
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({ messages: messages.reverse() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ messages: [] }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
