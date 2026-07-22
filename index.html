@@ -652,10 +652,27 @@
                         <!-- Status Pengiriman ke Google Sheets -->
                         <div id="quiz-submit-status" class="quiz-status-box" style="margin: 0.5rem 0; width: 100%;"></div>
 
-                        <button class="btn btn-primary" onclick="restartQuiz()">
-                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
-                            Ulangi Kuis
-                        </button>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-top: 0.5rem;">
+                            🔒 Setiap peserta hanya memiliki 1 kali kesempatan mengerjakan kuis.
+                        </div>
+                    </div>
+
+                    <!-- Panel Jika Sudah Pernah Mengerjakan Kuis (1 Kali Akses) -->
+                    <div class="glass-card quiz-completed-panel" id="quiz-completed-panel" style="display: none; text-align: center; max-width: 500px; margin: 0 auto; padding: 2rem 1.5rem;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔒</div>
+                        <h3 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 0.4rem;">Anda Sudah Mengikuti Kuis!</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem;">Setiap peserta hanya diperbolehkan mengerjakan kuis ini 1 kali. Terima kasih telah berpartisipasi!</p>
+                        
+                        <div style="background: rgba(255,255,255,0.7); border-radius: 12px; padding: 1rem; border: 1.5px solid rgba(12,119,173,0.15); margin-bottom: 1.2rem; text-align: left;">
+                            <div style="font-size: 0.88rem; margin-bottom: 0.4rem; color: var(--text-dark);"><strong>Nama:</strong> <span id="quiz-completed-name">-</span></div>
+                            <div style="font-size: 0.88rem; margin-bottom: 0.4rem; color: var(--text-dark);"><strong>Kelas / Instansi:</strong> <span id="quiz-completed-class">-</span></div>
+                            <div style="font-size: 0.88rem; margin-bottom: 0.4rem; color: var(--text-dark);"><strong>Skor Akhir:</strong> <span id="quiz-completed-score" style="color: var(--primary); font-weight: 700;">-</span></div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);"><strong>Waktu Pengerjaan:</strong> <span id="quiz-completed-time">-</span></div>
+                        </div>
+
+                        <div class="quiz-status-box status-success" style="font-size: 0.85rem;">
+                            ✅ Data nilai Anda telah tersimpan secara resmi di Google Sheets.
+                        </div>
                     </div>
                 </div>
             </div>

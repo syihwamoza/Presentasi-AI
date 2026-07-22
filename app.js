@@ -496,17 +496,42 @@ let answered = false;
 let currentUserIdentity = { name: "", classInfo: "" };
 
 function initQuiz() {
-    // Reset view ke form identitas jika belum diisi
+    const savedSubmission = localStorage.getItem("kkn_quiz_submitted_v1");
+    const idPanel = document.getElementById("quiz-identity-panel");
+    const progEl = document.getElementById("quiz-progress");
+    const cardEl = document.getElementById("quiz-card");
+    const resPanel = document.getElementById("quiz-result-panel");
+    const compPanel = document.getElementById("quiz-completed-panel");
+
+    if (savedSubmission) {
+        // Jika sudah pernah mengerjakan kuis di perangkat ini
+        try {
+            const data = JSON.parse(savedSubmission);
+            if (idPanel) idPanel.style.display = "none";
+            if (progEl) progEl.style.display = "none";
+            if (cardEl) cardEl.style.display = "none";
+            if (resPanel) resPanel.style.display = "none";
+
+            if (compPanel) {
+                document.getElementById("quiz-completed-name").textContent = data.nama || "-";
+                document.getElementById("quiz-completed-class").textContent = data.kelas || "-";
+                document.getElementById("quiz-completed-score").textContent = (data.skor !== undefined ? data.skor : "-") + " / 100";
+                document.getElementById("quiz-completed-time").textContent = data.waktu || "-";
+                compPanel.style.display = "block";
+            }
+        } catch(e) {
+            console.error("Error loading saved quiz submission", e);
+        }
+        return;
+    }
+
+    // Reset view ke form identitas jika belum mengerjakan kuis
     if (!currentUserIdentity.name) {
-        const idPanel = document.getElementById("quiz-identity-panel");
-        const progEl = document.getElementById("quiz-progress");
-        const cardEl = document.getElementById("quiz-card");
-        const resPanel = document.getElementById("quiz-result-panel");
-        
         if (idPanel) idPanel.style.display = "block";
         if (progEl) progEl.style.display = "none";
         if (cardEl) cardEl.style.display = "none";
         if (resPanel) resPanel.style.display = "none";
+        if (compPanel) compPanel.style.display = "none";
     }
 }
 
@@ -605,6 +630,16 @@ function showQuizResults() {
     
     document.getElementById("quiz-result-feedback").innerHTML = feedback;
 
+    const waktuStr = new Date().toLocaleString("id-ID");
+
+    // Simpan status pengerjaan kuis 1 kali di browser peserta
+    localStorage.setItem("kkn_quiz_submitted_v1", JSON.stringify({
+        nama: currentUserIdentity.name || "Anonim",
+        kelas: currentUserIdentity.classInfo || "-",
+        skor: finalScore,
+        waktu: waktuStr
+    }));
+
     // Kirim Data Nilai ke Google Sheets Backend
     sendQuizResultToGoogleSheets({
         nama: currentUserIdentity.name || "Anonim",
@@ -612,7 +647,7 @@ function showQuizResults() {
         skor: finalScore,
         benar: userScore,
         totalSoal: quizQuestions.length,
-        waktu: new Date().toLocaleString("id-ID")
+        waktu: waktuStr
     });
 }
 
