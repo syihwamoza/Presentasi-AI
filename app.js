@@ -1386,7 +1386,188 @@ window.loadSavedTeamPhotos = function() {
     });
 };
 
+/* ==========================================================================
+   TEAM VIEW TOGGLE & INTERACTIVE GROUP PHOTO HOTSPOTS
+   ========================================================================== */
+window.switchTeamView = function(mode) {
+    const groupView = document.getElementById("team-view-group");
+    const gridView = document.getElementById("team-view-grid");
+    const btnGroup = document.getElementById("btn-toggle-group");
+    const btnGrid = document.getElementById("btn-toggle-grid");
+
+    if (mode === "group") {
+        if (groupView) groupView.style.display = "block";
+        if (gridView) gridView.style.display = "none";
+        if (btnGroup) btnGroup.classList.add("active");
+        if (btnGrid) btnGrid.classList.remove("active");
+    } else {
+        if (groupView) groupView.style.display = "none";
+        if (gridView) gridView.style.display = "block";
+        if (btnGroup) btnGroup.classList.remove("active");
+        if (btnGrid) btnGrid.classList.add("active");
+    }
+};
+
+const MEMBER_PROFILES = {
+    "dpl": {
+        name: "Dosen Pembimbing Lapangan",
+        role: "Dosen Pembimbing UMY",
+        prodi: "Universitas Muhammadiyah Yogyakarta",
+        quote: "Membimbing mahasiswa KKN Sahabat Sekolah UMY untuk memberikan dampak nyata di SMA Muhammadiyah 9 Brondong."
+    },
+    "1": {
+        name: "Anggota 1",
+        role: "Ketua Kelompok",
+        prodi: "S1 Teknik Informatika UMY",
+        quote: "Mengabdi untuk menginspirasi generasi muda melalui penguasaan teknologi digital dan etika AI."
+    },
+    "2": {
+        name: "Anggota 2",
+        role: "Sekretaris",
+        prodi: "S1 Ilmu Komunikasi UMY",
+        quote: "Komunikasi dan edukasi etika digital adalah kunci kemajuan generasi muda."
+    },
+    "3": {
+        name: "Anggota 3",
+        role: "Bendahara",
+        prodi: "S1 Akuntansi UMY",
+        quote: "Transparansi dan dedikasi penuh dalam setiap program pengabdian KKN."
+    },
+    "4": {
+        name: "Anggota 4",
+        role: "Divisi Acara",
+        prodi: "S1 Hukum UMY",
+        quote: "Membangun etika dan integritas karakter muda Muhammadiyah."
+    },
+    "5": {
+        name: "Anggota 5",
+        role: "Divisi Humas",
+        prodi: "S1 Ilmu Komunikasi UMY",
+        quote: "Menjalin hubungan erat dengan sekolah dan masyarakat Brondong Lamongan."
+    },
+    "6": {
+        name: "Anggota 6",
+        role: "Divisi PDD",
+        prodi: "S1 Desain Komunikasi Visual UMY",
+        quote: "Menyajikan dokumentasi dan visual kreatif untuk setiap momen berharga."
+    },
+    "7": {
+        name: "Anggota 7",
+        role: "Divisi Logistik",
+        prodi: "S1 Teknik Sipil UMY",
+        quote: "Memastikan seluruh sarana dan fasilitas sosialisasi berjalan lancar."
+    },
+    "8": {
+        name: "Anggota 8",
+        role: "Divisi Konsumsi",
+        prodi: "S1 Farmasi UMY",
+        quote: "Kesehatan dan energi tim adalah prioritas utama suksesnya pengabdian."
+    },
+    "9": {
+        name: "Anggota 9",
+        role: "Anggota Tim",
+        prodi: "S1 Manajemen UMY",
+        quote: "Manajemen waktu dan semangat kolaborasi menuju hasil terbaik."
+    },
+    "10": {
+        name: "Anggota 10",
+        role: "Anggota Tim",
+        prodi: "S1 Hubungan Internasional UMY",
+        quote: "Wawasan luas untuk generasi muda yang siap bersaing global."
+    },
+    "11": {
+        name: "Anggota 11",
+        role: "Anggota Tim",
+        prodi: "S1 Pendidikan Agama Islam UMY",
+        quote: "Menanamkan nilai-nilai keislaman dan etika akhlakul karimah."
+    },
+    "12": {
+        name: "Anggota 12",
+        role: "Anggota Tim",
+        prodi: "S1 Psikologi UMY",
+        quote: "Mendukung kesehatan mental dan motivasi belajar siswa SMA 9 Brondong."
+    }
+};
+
+window.openMemberFromHotspot = function(id) {
+    activeTeamMemberId = String(id);
+    const modal = document.getElementById("team-modal");
+    if (!modal) return;
+
+    const profile = MEMBER_PROFILES[activeTeamMemberId] || {
+        name: "Anggota " + id,
+        role: "Anggota Tim KKN",
+        prodi: "Universitas Muhammadiyah Yogyakarta",
+        quote: "Mengabdi untuk menginspirasi siswa melalui penguasaan teknologi digital."
+    };
+
+    const card = document.querySelector(`.team-card[data-member-id="${activeTeamMemberId}"]`);
+    const name = card ? (card.getAttribute("data-name") || profile.name) : profile.name;
+    const role = card ? (card.getAttribute("data-role") || profile.role) : profile.role;
+    const prodi = card ? (card.getAttribute("data-prodi") || profile.prodi) : profile.prodi;
+    const quote = card ? (card.getAttribute("data-quote") || profile.quote) : profile.quote;
+
+    document.getElementById("modal-team-name").textContent = name;
+    document.getElementById("modal-team-role").textContent = role;
+    document.getElementById("modal-team-prodi").textContent = prodi;
+    document.getElementById("modal-team-quote").textContent = `"${quote}"`;
+
+    const modalImg = document.getElementById("modal-team-img");
+    const savedPhoto = localStorage.getItem("kkn_team_photo_" + activeTeamMemberId);
+    const cardImg = document.getElementById("team-img-" + activeTeamMemberId);
+
+    if (modalImg) {
+        if (savedPhoto) {
+            modalImg.src = savedPhoto;
+        } else if (cardImg && cardImg.src && !cardImg.src.endsWith("logo.png")) {
+            modalImg.src = cardImg.src;
+        } else {
+            modalImg.src = "foto-tim/anggota" + activeTeamMemberId + ".png";
+            modalImg.onerror = function() {
+                this.onerror = null;
+                this.src = "logo.png";
+            };
+        }
+    }
+
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+};
+
+window.triggerGroupPhotoUpload = function() {
+    const input = document.getElementById("group-photo-file-input");
+    if (input) input.click();
+};
+
+window.handleGroupPhotoUpload = function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const base64Data = e.target.result;
+        const mainPhoto = document.getElementById("group-photo-main");
+        if (mainPhoto) mainPhoto.src = base64Data;
+
+        try {
+            localStorage.setItem("kkn_group_photo_main", base64Data);
+        } catch (err) {
+            console.warn("Storage warning:", err);
+        }
+    };
+    reader.readAsDataURL(file);
+};
+
+window.loadSavedGroupPhoto = function() {
+    const savedGroup = localStorage.getItem("kkn_group_photo_main");
+    if (savedGroup) {
+        const mainPhoto = document.getElementById("group-photo-main");
+        if (mainPhoto) mainPhoto.src = savedGroup;
+    }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     initWallOfJoy();
     loadSavedTeamPhotos();
+    loadSavedGroupPhoto();
 });
