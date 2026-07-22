@@ -696,6 +696,61 @@
                         </p>
                     </div>
 
+                    <!-- TEMBOK KESAN & PESAN DIGITAL (WALL OF JOY) -->
+                    <div class="wall-of-joy-section" style="width: 100%; max-width: 920px; margin: 1.5rem 0;">
+                        <div style="text-align: center; margin-bottom: 1.5rem;">
+                            <h3 class="text-gradient-seafoam" style="font-size: 1.6rem; margin-bottom: 0.3rem;">Tembok Kesan & Pesan Digital 💌</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">Tuliskan pesan, kesan, atau ucapan apresiasi Anda untuk Mahasiswa KKN Sahabat Sekolah UMY!</p>
+                        </div>
+
+                        <div class="wall-layout">
+                            <!-- Form Pengiriman Kesan Pesan -->
+                            <div class="glass-card wall-form-card">
+                                <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                    Tulis Kesan &amp; Pesan
+                                </h4>
+                                <form id="wall-of-joy-form" onsubmit="submitWallMessage(event)">
+                                    <div style="margin-bottom: 0.8rem;">
+                                        <label style="display: block; font-weight: 600; font-size: 0.82rem; margin-bottom: 0.3rem; color: var(--text-dark); text-align: left;">Nama / Inisial &amp; Peran</label>
+                                        <input type="text" id="wall-author" class="form-control" placeholder="Contoh: Budi (Siswa X IPA 1) / Pak Guru" required style="width: 100%; padding: 0.65rem 0.9rem; border-radius: 8px; border: 1.5px solid rgba(12,119,173,0.25); background: rgba(255,255,255,0.9); font-size: 0.88rem; outline: none;">
+                                    </div>
+                                    <div style="margin-bottom: 0.8rem;">
+                                        <label style="display: block; font-weight: 600; font-size: 0.82rem; margin-bottom: 0.3rem; color: var(--text-dark); text-align: left;">Kategori Peserta</label>
+                                        <select id="wall-category" class="form-control" style="width: 100%; padding: 0.65rem 0.9rem; border-radius: 8px; border: 1.5px solid rgba(12,119,173,0.25); background: rgba(255,255,255,0.9); font-size: 0.88rem; outline: none;">
+                                            <option value="Siswa 🎓">Siswa 🎓</option>
+                                            <option value="Guru / Staf 👨‍🏫">Guru / Staf 👨‍🏫</option>
+                                            <option value="Orang Tua / Umum 🌟">Orang Tua / Umum 🌟</option>
+                                        </select>
+                                    </div>
+                                    <div style="margin-bottom: 0.8rem;">
+                                        <label style="display: block; font-weight: 600; font-size: 0.82rem; margin-bottom: 0.3rem; color: var(--text-dark); text-align: left;">Rating Sosialisasi KKN</label>
+                                        <div class="star-rating-selector" id="star-rating-selector">
+                                            <span onclick="setWallRating(1)" class="star-item" data-val="1">★</span>
+                                            <span onclick="setWallRating(2)" class="star-item" data-val="2">★</span>
+                                            <span onclick="setWallRating(3)" class="star-item" data-val="3">★</span>
+                                            <span onclick="setWallRating(4)" class="star-item" data-val="4">★</span>
+                                            <span onclick="setWallRating(5)" class="star-item active" data-val="5">★</span>
+                                        </div>
+                                    </div>
+                                    <div style="margin-bottom: 1rem;">
+                                        <label style="display: block; font-weight: 600; font-size: 0.82rem; margin-bottom: 0.3rem; color: var(--text-dark); text-align: left;">Pesan &amp; Kesan</label>
+                                        <textarea id="wall-message" rows="3" class="form-control" placeholder="Tuliskan pesan, kesan, atau kritik saran Anda untuk Tim KKN..." required style="width: 100%; padding: 0.65rem 0.9rem; border-radius: 8px; border: 1.5px solid rgba(12,119,173,0.25); background: rgba(255,255,255,0.9); font-size: 0.88rem; resize: vertical; outline: none;"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.7rem 1rem; font-size: 0.95rem;">
+                                        Kirim Pesan 🚀
+                                    </button>
+                                </form>
+                                <div id="wall-status-msg" style="margin-top: 0.8rem; font-size: 0.82rem; text-align: center; display: none;"></div>
+                            </div>
+
+                            <!-- Daftar Kartu Pesan (Wall of Joy Grid) -->
+                            <div class="wall-cards-container" id="wall-cards-list">
+                                <!-- Dynamic / Preloaded Cards via JS -->
+                            </div>
+                        </div>
+                    </div>
+
                     <div style="display:flex; flex-direction:column; align-items:center; gap: 0.8rem;">
                         <h4 style="color: var(--primary); font-size: 1.1rem;">Sesi Tanya Jawab (QnA)</h4>
                         <div class="team-grid">
