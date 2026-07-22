@@ -1194,6 +1194,9 @@ function renderWallMessages(messages) {
     const wallList = document.getElementById("wall-cards-list");
     if (!wallList) return;
 
+    const countEl = document.getElementById("wall-msg-count");
+    if (countEl) countEl.textContent = messages.length;
+
     wallList.innerHTML = "";
 
     messages.forEach(msg => {
