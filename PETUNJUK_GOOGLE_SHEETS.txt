@@ -30,8 +30,8 @@ function doPost(e) {
       sheetKesan.appendRow([
         param.waktu || new Date().toLocaleString("id-ID"),
         param.nama || "Anonim",
-        param.kelas || "Siswa 🎓",
-        param.rating || "5 Bintang ⭐",
+        param.kelas || "Siswa",
+        param.rating || "5 Bintang",
         param.pesan || "-"
       ]);
       return ContentService.createTextOutput(JSON.stringify({ result: "success" })).setMimeType(ContentService.MimeType.JSON);
