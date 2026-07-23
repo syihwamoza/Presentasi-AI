@@ -1410,9 +1410,9 @@ window.switchTeamView = function(mode) {
 
 const MEMBER_PROFILES = {
     "dpl": {
-        name: "Dosen Pembimbing Lapangan",
+        name: "Dosen Pembimbing Lapangan (DPL)",
         role: "Dosen Pembimbing UMY",
-        prodi: "Universitas Muhammadiyah Yogyakarta",
+        prodi: "Dosen Program Studi Agribisnis UMY",
         quote: "Membimbing mahasiswa KKN Sahabat Sekolah UMY untuk memberikan dampak nyata di SMA Muhammadiyah 9 Brondong."
     },
     "1": {

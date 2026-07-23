@@ -231,17 +231,14 @@
             <section id="profil-tim" style="padding: 50px 0; background: #ffffff;">
                 <div class="container">
                     <!-- DPL (DOSEN PEMBIMBING LAPANGAN) CARD -->
-                    <div class="dpl-card" onclick="if(typeof openMemberModal==='function') openMemberModal('dpl')" style="max-width: 720px; margin: 0 auto 2.5rem auto; padding: 1.6rem 2rem; background: linear-gradient(135deg, rgba(12, 119, 173, 0.05) 0%, rgba(207, 163, 40, 0.08) 100%); border: 1.5px solid rgba(12, 119, 173, 0.18); border-radius: 24px; text-align: center; box-shadow: 0 10px 30px rgba(11, 50, 66, 0.04); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                        <div style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 1rem; background: var(--primary); color: #ffffff; font-size: 0.78rem; font-weight: 700; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem;">
-                            <span>👨‍🏫</span> Dosen Pembimbing Lapangan (DPL)
-                        </div>
+                    <div class="dpl-card" onclick="if(typeof openMemberModal==='function') openMemberModal('dpl')" style="max-width: 720px; margin: 0 auto 2.5rem auto; padding: 1.6rem 2rem; background: linear-gradient(135deg, rgba(12, 119, 173, 0.05) 0%, rgba(207, 163, 40, 0.08) 100%); border: 1.5px solid rgba(12, 119, 173, 0.18); border-radius: 24px; box-shadow: 0 10px 30px rgba(11, 50, 66, 0.04); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
                         <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; text-align: left;">
                             <div style="position: relative; flex-shrink: 0;">
-                                <img src="foto-tim/dpl.png" onerror="this.onerror=null; this.src='logo.png';" alt="Foto DPL" style="width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 6px 16px rgba(12, 119, 173, 0.15);">
+                                <img src="foto-tim/dpl.png" onerror="this.onerror=null; this.src=(this.src.endsWith('.png')?'foto-tim/dpl.jpg':'logo.png');" alt="Foto DPL" style="width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 6px 16px rgba(12, 119, 173, 0.15);">
                             </div>
                             <div style="flex: 1; min-width: 240px;">
-                                <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.2rem;">Dosen Pembimbing Lapangan</h3>
-                                <div style="font-size: 0.88rem; font-weight: 600; color: var(--primary); margin-bottom: 0.4rem;">Universitas Muhammadiyah Yogyakarta</div>
+                                <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.25rem;">Dosen Pembimbing Lapangan (DPL)</h3>
+                                <div style="font-size: 0.9rem; font-weight: 600; color: var(--primary); margin-bottom: 0.4rem;">Dosen Program Studi Agribisnis UMY</div>
                                 <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0; font-style: italic;">
                                     "Membimbing mahasiswa KKN Sahabat Sekolah UMY untuk memberikan dampak nyata di SMA Muhammadiyah 9 Brondong."
                                 </p>
