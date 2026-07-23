@@ -977,6 +977,12 @@ section.slide:nth-child(even) {
   border-radius: 20px;
 }
 
+.dpl-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px rgba(12, 119, 173, 0.12) !important;
+  border-color: rgba(207, 163, 40, 0.4) !important;
+}
+
 /* CLICKABLE AREA OVER EACH PERSON IN GROUP PHOTO (WHITE STYLES) */
 .person-clickable-area {
   position: absolute;
