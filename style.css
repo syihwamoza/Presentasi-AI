@@ -994,24 +994,24 @@ section.slide:nth-child(even) {
 
 .person-clickable-area:hover {
   background: rgba(255, 255, 255, 0.45);
-  border: 2.5px solid #ffffff;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.95);
-  transform: translate(-50%, -50%) scale(1.18);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%) scale(1.15);
 }
 
 /* Hover Pulse Ring */
 .person-clickable-area::after {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: -3px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
   animation: personPulse 2s infinite;
 }
 
 @keyframes personPulse {
   0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.25); opacity: 0; }
 }
 
 .person-tooltip {
