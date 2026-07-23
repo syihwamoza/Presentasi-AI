@@ -928,9 +928,10 @@ section.slide:nth-child(even) {
   width: 100%;
   margin: 1.5rem auto 0 auto;
   border-radius: 24px;
-  box-shadow: 0 16px 45px rgba(12, 119, 173, 0.16);
-  border: 4px solid #ffffff;
-  background: #ffffff;
+  box-shadow: 0 16px 45px rgba(12, 119, 173, 0.12);
+  border: none;
+  background: linear-gradient(180deg, #f0f7fa 0%, #e4f1f8 100%);
+  overflow: hidden;
 }
 
 /* PLAYFUL STICKER "Tap Circle! 👀" (STATIC TEXT GLUED ON PHOTO) */
@@ -966,6 +967,7 @@ section.slide:nth-child(even) {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem 0;
 }
 
 .group-photo-img {
@@ -975,6 +977,7 @@ section.slide:nth-child(even) {
   display: block;
   object-fit: contain;
   border-radius: 20px;
+  filter: drop-shadow(0 14px 28px rgba(11, 50, 66, 0.28)) drop-shadow(0 3px 8px rgba(12, 119, 173, 0.22));
 }
 
 .dpl-card:hover {
@@ -2019,24 +2022,29 @@ section.slide:nth-child(even) {
   font-size: 0.82rem;
 }
 
-/* Tembok Kesan & Pesan Digital (Big Board Wall of Joy) */
+/* Tembok Kesan & Pesan Digital (Stacked Vertical Layout: Form on top, Board below) */
 .wall-main-layout {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 1.8rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+  width: 100%;
 }
 
 @media (max-width: 992px) {
   .wall-main-layout {
-    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
 .wall-form-card {
-  padding: 1.6rem 1.4rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(11, 50, 66, 0.08);
+  max-width: 680px;
+  width: 100%;
+  padding: 2rem 2.2rem;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1.5px solid rgba(12, 119, 173, 0.15);
+  box-shadow: 0 12px 35px rgba(11, 50, 66, 0.06);
 }
 
 /* BIG INTERACTIVE RATING STARS */
@@ -2071,18 +2079,41 @@ section.slide:nth-child(even) {
   transform: scale(1.4) rotate(8deg);
 }
 
-/* THE REALISTIC CUTE BULLETIN BOARD (PAPAN PENGUMUMAN DIGITAL) */
-/* THE REALISTIC WOODEN BULLETIN BOARD (PAPAN KAYU DIGITIAL) */
+/* THE REALISTIC CHALKBOARD BULLETIN BOARD (PAPAN TULIS KAPUR "LEAVE YOUR MARK!") */
 .wall-of-joy-big-board {
-  background: #f4ece1;
-  background-image: radial-gradient(#d4c1ad 2px, transparent 2px);
-  background-size: 22px 22px;
+  width: 100%;
+  max-width: 960px;
+  background: #53463e;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, #5c4e46 0%, #463b34 100%);
+  background-size: 24px 24px, 100% 100%;
   border-radius: 28px;
-  padding: 1.6rem 1.8rem;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2), 0 15px 40px rgba(0, 0, 0, 0.25);
-  border: 14px solid #5c3d2e; /* Bingkai Kayu Cokelat Warm */
-  min-height: 490px;
+  padding: 2.2rem 2rem 2.5rem 2rem;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6), 0 20px 50px rgba(11, 50, 66, 0.15);
+  border: 14px solid #f0cbb0; /* Warm Beige/Wood Frame matching user image */
   position: relative;
+  margin-top: 2rem;
+}
+
+/* String Hanger & Pink Pin at top center of board */
+.wall-of-joy-big-board::before {
+  content: "";
+  position: absolute;
+  top: -44px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 44px;
+  background: 
+    radial-gradient(circle at 50% 7px, #e8627c 7px, transparent 8px),
+    linear-gradient(155deg, transparent 48%, #2b2b2b 48%, #2b2b2b 52%, transparent 52%),
+    linear-gradient(205deg, transparent 48%, #2b2b2b 48%, #2b2b2b 52%, transparent 52%);
+  background-size: 100% 100%, 50% 100%, 50% 100%;
+  background-position: center, left, right;
+  background-repeat: no-repeat;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .board-header {
@@ -2090,40 +2121,40 @@ section.slide:nth-child(even) {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  padding: 0.3rem 0.6rem;
-  background: transparent; /* Hilangkan Kotak Biru Padat */
+  padding: 0.2rem 0.5rem;
+  background: transparent;
   box-shadow: none;
   border: none;
   position: relative;
 }
 
 .board-badge {
-  color: #4a2e23;
+  color: #ffffff;
   font-family: 'Caveat', cursive, sans-serif; /* Font Gaya Tulisan Tangan / Kapur */
   font-weight: 700;
-  font-size: 2.8rem;
+  font-size: 3.2rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
   letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.12);
-  transform: rotate(-1.5deg); /* Kemiringan Alami Tulisan Kapur */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.2);
+  transform: rotate(-1.5deg);
 }
 
 .board-count-badge {
-  font-size: 0.85rem;
-  color: #5c3d2e;
+  font-size: 0.88rem;
+  color: #4a3e36;
   background: #ffffff;
-  padding: 0.4rem 1.1rem;
+  padding: 0.45rem 1.2rem;
   border-radius: 20px;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1.5px solid #d5c3b1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1.5px solid #f0cbb0;
 }
 
 .board-count-badge span {
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--primary);
 }
 
@@ -2134,6 +2165,28 @@ section.slide:nth-child(even) {
   max-height: 520px;
   overflow-y: auto;
   padding: 0.8rem 0.5rem 1rem 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 203, 176, 0.5) rgba(0, 0, 0, 0.2);
+}
+
+/* Thin, elegant custom scrollbar for chalkboard board grid */
+.board-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.board-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 4px 0;
+}
+
+.board-grid::-webkit-scrollbar-thumb {
+  background: rgba(240, 203, 176, 0.5);
+  border-radius: 10px;
+}
+
+.board-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(240, 203, 176, 0.85);
 }
 
 /* Cute Pinned Sticky Note Cards */
@@ -2577,9 +2630,24 @@ section.slide:nth-child(even) {
   margin-bottom: 1.2rem;
 }
 
+.proker-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.proker-card:hover .proker-icon-badge {
+  transform: scale(1.1) rotate(-3deg);
+}
+
 .proker-card-body h3 {
   font-size: 1.2rem;
-  margin: 0.6rem 0 0.4rem 0;
+  margin: 0.4rem 0 0.4rem 0;
   color: var(--text-dark);
 }
 

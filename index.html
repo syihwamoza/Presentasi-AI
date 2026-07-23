@@ -127,7 +127,7 @@
         <!-- PAGE 1: BERANDA PORTAL UTAMA -->
         <div id="page-beranda" class="page-view active">
             <!-- HERO SECTION (RATA TENGAH DENGAN BACKGROUND FOTO BERSAMA) -->
-            <section class="hero-portal" style="padding: 75px 2rem; position: relative; background: linear-gradient(180deg, rgba(248, 250, 252, 0.84) 0%, rgba(224, 242, 254, 0.88) 100%), url('foto-tim/school_bg.jpg'), url('foto-tim/hero_bg.png') center/cover no-repeat; border-radius: 32px; margin: 1.5rem 0 2.5rem 0; overflow: hidden; box-shadow: 0 16px 45px rgba(12, 119, 173, 0.14); border: 3px solid #ffffff;">
+            <section class="hero-portal" style="padding: 75px 2rem; position: relative; background: linear-gradient(180deg, rgba(248, 250, 252, 0.84) 0%, rgba(224, 242, 254, 0.88) 100%), url('foto-tim/school_bg.jpg'), url('foto-tim/hero_bg.png') center/cover no-repeat; border-radius: 0; margin: 1.5rem 0 2.5rem 0; overflow: hidden; box-shadow: 0 16px 45px rgba(12, 119, 173, 0.14); border: 3px solid #ffffff;">
                 <div class="container" style="max-width: 860px; text-align: center; margin: 0 auto; position: relative; z-index: 5;">
                     <!-- BIG BOLD TITLE (RATA TENGAH) -->
                     <h1 class="text-gradient-seafoam" style="font-size: clamp(1.6rem, 3.2vw, 2.2rem); line-height: 1.3; font-weight: 700; margin-bottom: 1rem; text-align: center;">
@@ -165,7 +165,7 @@
             <section style="padding: 20px 0;">
                 <div class="container">
                     <div class="section-header" style="text-align: center;">
-                        <h2 class="text-gradient-seafoam">Program Kerja Unggulan Kami</h2>
+                        <h2 class="text-gradient-seafoam">Program Kerja Kami</h2>
                         <p>Berikut adalah 6 pilar pengabdian KKN Sahabat Sekolah UMY untuk mencerdaskan dan membentuk karakter tangguh bagi siswa-siswi SMA Muhammadiyah 9 Brondong.</p>
                     </div>
                     
@@ -173,55 +173,93 @@
                         <!-- Card 1: AI -->
                         <div class="proker-card">
                             <div class="proker-card-body">
+                                <div class="proker-icon-badge" style="background: rgba(12, 119, 173, 0.12); color: var(--primary);">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                                        <circle cx="12" cy="12" r="4"/>
+                                    </svg>
+                                </div>
                                 <h3>Bijak Menggunakan AI</h3>
                                 <p>Sosialisasi pemanfaatan teknologi AI secara cerdas dan etis dengan rumus jitu Metode CTIF untuk meningkatkan kualitas belajar tanpa plagiasi.</p>
                             </div>
-                            <button class="btn btn-primary" onclick="switchPage('proker-ai')" style="width: 100%; justify-content: center;">Buka Program</button>
+                            <button class="btn btn-primary" onclick="switchPage('proker-ai')" style="width: 100%; justify-content: center;">Lihat Program</button>
                         </div>
                         
                         <!-- Card 2: Creative Presentation -->
                         <div class="proker-card">
                             <div class="proker-card-body">
+                                <div class="proker-icon-badge" style="background: rgba(207, 163, 40, 0.14); color: #b48512;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                        <line x1="8" y1="21" x2="16" y2="21"/>
+                                        <line x1="12" y1="17" x2="12" y2="21"/>
+                                        <polygon points="10 8 16 11 10 14 10 8"/>
+                                    </svg>
+                                </div>
                                 <h3>Creative Presentation</h3>
                                 <p>Workshop Canva untuk membekali keterampilan desain digital ditambah pelatihan public speaking untuk meningkatkan rasa percaya diri siswa di depan umum.</p>
                             </div>
-                            <button class="btn btn-primary" onclick="switchPage('proker-creative')" style="width: 100%; justify-content: center;">Buka Program</button>
+                            <button class="btn btn-primary" onclick="switchPage('proker-creative')" style="width: 100%; justify-content: center;">Lihat Program</button>
                         </div>
                         
                         <!-- Card 3: Karakter Muda -->
                         <div class="proker-card">
                             <div class="proker-card-body">
+                                <div class="proker-icon-badge" style="background: rgba(225, 29, 72, 0.12); color: #e11d48;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                        <path d="M12 8v4M12 16h.01"/>
+                                    </svg>
+                                </div>
                                 <h3>Karakter Muda</h3>
                                 <p>Edukasi pencegahan bahaya pergaulan bebas (revenge porn, kehamilan dini) serta literasi keuangan dasar guna menghindari gaya hidup konsumtif/pinjol.</p>
                             </div>
-                            <button class="btn btn-primary" onclick="switchPage('proker-karakter')" style="width: 100%; justify-content: center;">Buka Program</button>
+                            <button class="btn btn-primary" onclick="switchPage('proker-karakter')" style="width: 100%; justify-content: center;">Lihat Program</button>
                         </div>
                         
                         <!-- Card 4: Gerbang Kampus -->
                         <div class="proker-card">
                             <div class="proker-card-body">
+                                <div class="proker-icon-badge" style="background: rgba(2, 132, 199, 0.12); color: #0284c7;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                        <path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/>
+                                    </svg>
+                                </div>
                                 <h3>Gerbang Kampus</h3>
                                 <p>Sosialisasi profil UMY, program studi, rincian biaya kuliah, serta berbagai skema beasiswa perguruan tinggi untuk membuka wawasan masa depan siswa.</p>
                             </div>
-                            <button class="btn btn-primary" onclick="switchPage('proker-gerbang')" style="width: 100%; justify-content: center;">Buka Program</button>
+                            <button class="btn btn-primary" onclick="switchPage('proker-gerbang')" style="width: 100%; justify-content: center;">Lihat Program</button>
                         </div>
                         
                         <!-- Card 5: English Connect -->
                         <div class="proker-card">
                             <div class="proker-card-body">
+                                <div class="proker-icon-badge" style="background: rgba(5, 150, 105, 0.12); color: #059669;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                        <path d="M8 10h.01M12 10h.01M16 10h.01"/>
+                                    </svg>
+                                </div>
                                 <h3>English Connect</h3>
                                 <p>Pelatihan interaktif Bahasa Inggris dasar (daily conversation &amp; vocabulary) untuk meningkatkan rasa percaya diri dan keterampilan komunikasi siswa.</p>
                             </div>
-                            <button class="btn btn-primary" onclick="switchPage('proker-english')" style="width: 100%; justify-content: center;">Buka Program</button>
+                            <button class="btn btn-primary" onclick="switchPage('proker-english')" style="width: 100%; justify-content: center;">Lihat Program</button>
                         </div>
 
                         <!-- Card 6: Semarak Merdeka -->
                         <div class="proker-card">
                             <div class="proker-card-body">
+                                <div class="proker-icon-badge" style="background: rgba(220, 38, 38, 0.12); color: #dc2626;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                                        <line x1="4" y1="22" x2="4" y2="15"/>
+                                    </svg>
+                                </div>
                                 <h3>Semarak Merdeka</h3>
                                 <p>Kegiatan seru peringatan hari kemerdekaan melalui aneka lomba edukatif, pentas seni, serta penguatan jiwa kebangsaan dan kebersamaan di sekolah.</p>
                             </div>
-                            <button class="btn btn-primary" onclick="switchPage('proker-semarak')" style="width: 100%; justify-content: center;">Buka Program</button>
+                            <button class="btn btn-primary" onclick="switchPage('proker-semarak')" style="width: 100%; justify-content: center;">Lihat Program</button>
                         </div>
                     </div>
                 </div>
@@ -232,16 +270,13 @@
                 <div class="container">
                     <!-- DPL (DOSEN PEMBIMBING LAPANGAN) CARD -->
                     <div class="dpl-card" onclick="if(typeof openMemberModal==='function') openMemberModal('dpl')" style="max-width: 720px; margin: 0 auto 2.5rem auto; padding: 1.6rem 2rem; background: linear-gradient(135deg, rgba(12, 119, 173, 0.05) 0%, rgba(207, 163, 40, 0.08) 100%); border: 1.5px solid rgba(12, 119, 173, 0.18); border-radius: 24px; box-shadow: 0 10px 30px rgba(11, 50, 66, 0.04); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; text-align: left;">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 1.8rem; flex-wrap: wrap; text-align: left;">
                             <div style="position: relative; flex-shrink: 0;">
-                                <img src="foto-tim/dpl.png" onerror="this.onerror=null; this.src=(this.src.endsWith('.png')?'foto-tim/dpl.jpg':'logo.png');" alt="Foto DPL" style="width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 6px 16px rgba(12, 119, 173, 0.15);">
+                                <img src="foto-tim/dpl.png" onerror="this.onerror=null; this.src=(this.src.endsWith('.png')?'foto-tim/dpl.jpg':'logo.png');" alt="Foto DPL" style="width: 115px; height: 115px; border-radius: 50%; object-fit: cover; border: none; box-shadow: 0 8px 20px rgba(12, 119, 173, 0.18);">
                             </div>
                             <div style="flex: 1; min-width: 240px;">
-                                <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.25rem;">Dosen Pembimbing Lapangan (DPL)</h3>
-                                <div style="font-size: 0.9rem; font-weight: 600; color: var(--primary); margin-bottom: 0.4rem;">Dosen Program Studi Agribisnis UMY</div>
-                                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0; font-style: italic;">
-                                    "Membimbing mahasiswa KKN Sahabat Sekolah UMY untuk memberikan dampak nyata di SMA Muhammadiyah 9 Brondong."
-                                </p>
+                                <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.3rem;">Dosen Pembimbing Lapangan (DPL)</h3>
+                                <div style="font-size: 0.95rem; font-weight: 600; color: var(--primary); margin: 0;">Dosen Program Studi Agribisnis UMY</div>
                             </div>
                         </div>
                     </div>
@@ -305,13 +340,14 @@
                     </div>
                 </div>
             </section>
+        </div>
 
         <!-- PAGE KESAN & PESAN DIGITAL -->
         <div id="page-kesan" class="page-view">
             <section id="tembok-kesan" style="padding: 50px 0 80px 0; background: linear-gradient(180deg, #ffffff 0%, rgba(12, 119, 173, 0.06) 100%); min-height: 85vh;">
                 <div class="container">
                     <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
-                        <h2 class="text-gradient-seafoam" style="font-size: clamp(1.5rem, 3vw, 2.0rem); margin-bottom: 0.5rem;">Tembok Kesan &amp; Pesan Digital</h2>
+                        <h2 class="text-gradient-seafoam" style="font-size: clamp(1.5rem, 3vw, 2.0rem); margin-bottom: 0.5rem;">Message Board</h2>
                         <p style="max-width: 650px; margin: 0 auto; color: var(--text-muted); font-size: 0.98rem;">Tuliskan pesan, kesan, atau ucapan apresiasi Anda untuk Mahasiswa KKN Sahabat Sekolah UMY! Pesanmu akan langsung tampil di Papan Besar bawah ini.</p>
                     </div>
 
@@ -361,13 +397,57 @@
                         <div class="wall-of-joy-big-board">
                             <div class="board-header">
                                 <div class="board-badge">
-                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5v6l1 1 1-1v-6h5v-2l-2-2z"/></svg>
-                                    <span>Leave Your Mark</span>
+                                    <span>Leave your Mark!</span>
                                 </div>
                                 <div class="board-count-badge">Total Pesan: <span id="wall-msg-count">0</span></div>
                             </div>
                             <div class="board-grid" id="wall-cards-list">
-                                <!-- Dynamic / Preloaded Cards via JS -->
+                                <!-- Static Fallback Sticky Note Cards -->
+                                <div class="wall-card-item">
+                                    <div class="wall-card-header">
+                                        <span class="wall-card-author">Bpk. Guru SMA M 9</span>
+                                        <span class="wall-card-badge">Guru / Staf</span>
+                                    </div>
+                                    <div class="wall-card-stars">★★★★★</div>
+                                    <div class="wall-card-text">Terima kasih banyak adik-adik Mahasiswa KKN UMY atas sosialisasi AI yang sangat edukatif ini. Sangat membuka wawasan siswa-siswi kami dalam memanfaatkan teknologi!</div>
+                                    <div class="wall-card-time">22/07/2026, 14.15</div>
+                                </div>
+                                <div class="wall-card-item">
+                                    <div class="wall-card-header">
+                                        <span class="wall-card-author">Rizky (Siswa X IPA 1)</span>
+                                        <span class="wall-card-badge">Siswa</span>
+                                    </div>
+                                    <div class="wall-card-stars">★★★★★</div>
+                                    <div class="wall-card-text">Materi kuis dan rumus prompt CTIF-nya keren banget Kak! Jadi makin paham cara tanya AI yang bener buat bantu nugas sekolah.</div>
+                                    <div class="wall-card-time">22/07/2026, 14.30</div>
+                                </div>
+                                <div class="wall-card-item">
+                                    <div class="wall-card-header">
+                                        <span class="wall-card-author">Nabila (Siswa XI IPS)</span>
+                                        <span class="wall-card-badge">Siswa</span>
+                                    </div>
+                                    <div class="wall-card-stars">★★★★★</div>
+                                    <div class="wall-card-text">Kakak-kakak KKN ramah banget dan penyampaian materinya asik, nggak ngebosenin. Sukses selalu untuk KKN Sahabat Sekolah UMY!</div>
+                                    <div class="wall-card-time">22/07/2026, 14.45</div>
+                                </div>
+                                <div class="wall-card-item">
+                                    <div class="wall-card-header">
+                                        <span class="wall-card-author">Bu Rahma (Staf Kurikulum)</span>
+                                        <span class="wall-card-badge">Guru / Staf</span>
+                                    </div>
+                                    <div class="wall-card-stars">★★★★★</div>
+                                    <div class="wall-card-text">Program kerja KKN yang sangat inovatif dan relevan dengan kebutuhan pembelajaran digital siswa di SMA Muhammadiyah 9 Brondong.</div>
+                                    <div class="wall-card-time">22/07/2026, 15.10</div>
+                                </div>
+                                <div class="wall-card-item">
+                                    <div class="wall-card-header">
+                                        <span class="wall-card-author">Farhan (Siswa XII IPA 2)</span>
+                                        <span class="wall-card-badge">Siswa</span>
+                                    </div>
+                                    <div class="wall-card-stars">★★★★★</div>
+                                    <div class="wall-card-text">Sangat membantu buat persiapan tugas akhir sekolah dan menambah wawasan masuk perguruan tinggi. Terima kasih Kakak-kakak KKN UMY!</div>
+                                    <div class="wall-card-time">22/07/2026, 15.30</div>
+                                </div>
                             </div>
                         </div>
                     </div>

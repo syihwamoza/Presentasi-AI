@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initPromptPlayground();
     initPromptGrader();
     initQuiz();
+    initWallOfJoy();
     
     // Initialize new proker modules
     initCreativeProker();
@@ -99,6 +100,10 @@ window.switchPage = function(pageId) {
         window.scrollToSlide(0);
     } else {
         if (lateralDots) lateralDots.style.display = "none";
+    }
+
+    if (pageId === "kesan") {
+        initWallOfJoy();
     }
 
     // Scroll to top of window
@@ -1171,6 +1176,20 @@ const initialWallMessages = [
         rating: 5,
         message: "Kakak-kakak KKN ramah banget dan penyampaian materinya asik, nggak ngebosenin. Sukses selalu untuk KKN Sahabat Sekolah UMY!",
         time: "22/07/2026, 14.45"
+    },
+    {
+        author: "Bu Rahma (Staf Kurikulum)",
+        category: "Guru / Staf",
+        rating: 5,
+        message: "Program kerja KKN yang sangat inovatif dan relevan dengan kebutuhan pembelajaran digital siswa di SMA Muhammadiyah 9 Brondong.",
+        time: "22/07/2026, 15.10"
+    },
+    {
+        author: "Farhan (Siswa XII IPA 2)",
+        category: "Siswa",
+        rating: 5,
+        message: "Sangat membantu buat persiapan tugas akhir sekolah dan menambah wawasan masuk perguruan tinggi. Terima kasih Kakak-kakak KKN UMY!",
+        time: "22/07/2026, 15.30"
     }
 ];
 
@@ -1206,11 +1225,23 @@ function initWallOfJoy() {
         fetch(GOOGLE_SCRIPT_URL)
             .then(res => res.json())
             .then(data => {
-                if (data && data.messages && data.messages.length > 0) {
-                    renderWallMessages(data.messages);
-                }
+                const liveMsgs = (data && data.messages && data.messages.length > 0) ? data.messages : [];
+                const combined = [...liveMsgs, ...saved, ...initialWallMessages];
+                const uniqueMsgs = [];
+                const seen = new Set();
+                combined.forEach(m => {
+                    const key = (m.author || '') + '|' + (m.message || '');
+                    if (!seen.has(key)) {
+                        seen.add(key);
+                        uniqueMsgs.push(m);
+                    }
+                });
+                renderWallMessages(uniqueMsgs);
             })
-            .catch(err => console.warn("Fetch live wall err:", err));
+            .catch(err => {
+                console.warn("Fetch live wall err:", err);
+                renderWallMessages(localMessages);
+            });
     }
 }
 
